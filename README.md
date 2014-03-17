@@ -1,4 +1,4 @@
 CompactShop
 ===========
 
-Compact Shop CMS ased on a Kohana Framework 3.3
+Compact Shop CMS based on a Kohana Framework 3.3
