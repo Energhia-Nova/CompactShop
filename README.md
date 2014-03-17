@@ -1,0 +1,4 @@
+CompactShop
+===========
+
+Compact Shop CMS
