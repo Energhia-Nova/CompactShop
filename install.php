@@ -311,7 +311,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 										
 										if ($t=='orders')
 										{
-											$mysqli->query("INSERT INTO `".$t_."orders` VALUES (21,17,1),(20,17,2),(19,18,2),(18,18,1),(17,18,2),(16,18,3),(15,18,2);");
+											$mysqli->query("INSERT INTO `".$t_."orders` VALUES (21,17,1),(20,17,2),(19,18,2);");
 										}
 										
 										if ($t=='products')
