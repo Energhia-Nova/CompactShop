@@ -223,3 +223,16 @@
 #8 C:\workspace\sites\mag\www\application\bootstrap.php(174): Kohana_ORM::factory('menu_item')
 #9 C:\workspace\sites\mag\www\index.php(102): require('C:\workspace\si...')
 #10 {main} in C:\workspace\sites\mag\www\modules\database\classes\Kohana\Database\MySQL.php:75
+2014-03-23 16:10:31 --- CRITICAL: ErrorException [ 2 ]: parse_ini_file(settings.ini): failed to open stream: No such file or directory ~ APPPATH\config\database.php [ 3 ] in :
+2014-03-23 16:10:31 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'parse_ini_file(...', 'C:\workspace\si...', 3, Array)
+#1 C:\workspace\sites\mag\www\application\config\database.php(3): parse_ini_file('settings.ini', true)
+#2 C:\workspace\sites\mag\www\system\classes\Kohana\Core.php(829): include('C:\workspace\si...')
+#3 C:\workspace\sites\mag\www\system\classes\Kohana\Config\File\Reader.php(49): Kohana_Core::load('C:\workspace\si...')
+#4 C:\workspace\sites\mag\www\system\classes\Kohana\Config.php(130): Kohana_Config_File_Reader->load('database')
+#5 C:\workspace\sites\mag\www\modules\database\classes\Kohana\Database.php(65): Kohana_Config->load('database')
+#6 C:\workspace\sites\mag\www\modules\orm\classes\Kohana\ORM.php(317): Kohana_Database::instance(NULL)
+#7 C:\workspace\sites\mag\www\modules\orm\classes\Kohana\ORM.php(254): Kohana_ORM->_initialize()
+#8 C:\workspace\sites\mag\www\modules\orm\classes\Kohana\ORM.php(46): Kohana_ORM->__construct(NULL)
+#9 C:\workspace\sites\mag\www\application\bootstrap.php(174): Kohana_ORM::factory('menu_item')
+#10 C:\workspace\sites\mag\www\index.php(102): require('C:\workspace\si...')
+#11 {main} in :

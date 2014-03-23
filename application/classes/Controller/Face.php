@@ -3,7 +3,7 @@
 class Controller_Face extends Controller_Base {
     // @Enter
     public function action_index()
-	{
+	{	
 		$login = Session::instance()->get('login');
 		
 		if (Auth::instance()->logged_in())

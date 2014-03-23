@@ -87,14 +87,14 @@ function write_ini_file($assoc_arr, $path, $has_sections=FALSE) {
     return true; 
 }
 
-$tables = array('brands'=>'CREATE TABLE `brands` (
+$tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
   `description` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'cart'=>'CREATE TABLE `cart` (
+										'cart'=>'CREATE TABLE IF NOT EXISTS `cart` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -116,20 +116,20 @@ $tables = array('brands'=>'CREATE TABLE `brands` (
 
 
 
-										'options'=>'CREATE TABLE `options` (
+										'options'=>'CREATE TABLE IF NOT EXISTS `options` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
   `alias` varchar(256) NOT NULL,
   `value` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'orders'=>'CREATE TABLE `orders` (
+										'orders'=>'CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;',
-										'pages'=>'CREATE TABLE `pages` (
+										'pages'=>'CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
@@ -137,7 +137,7 @@ $tables = array('brands'=>'CREATE TABLE `brands` (
   `ru_name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;',
-										'products'=>'CREATE TABLE `products` (
+										'products'=>'CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` float NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -150,7 +150,7 @@ $tables = array('brands'=>'CREATE TABLE `brands` (
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;',
-										'profile'=>'CREATE TABLE `profile` (
+										'profile'=>'CREATE TABLE IF NOT EXISTS `profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `age` int(11) NOT NULL,
@@ -159,21 +159,21 @@ $tables = array('brands'=>'CREATE TABLE `brands` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;',
-										'purchases'=>'CREATE TABLE `purchases` (
+										'purchases'=>'CREATE TABLE IF NOT EXISTS `purchases` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;',
-										'roles'=>'CREATE TABLE `roles` (
+										'roles'=>'CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'roles_users'=>"CREATE TABLE `roles_users` (
+										'roles_users'=>"CREATE TABLE IF NOT EXISTS `roles_users` (
   `user_id` int(10) unsigned NOT NULL,
   `role_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
@@ -181,19 +181,19 @@ $tables = array('brands'=>'CREATE TABLE `brands` (
   CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;",
-										'statuses'=>'CREATE TABLE `statuses` (
+										'statuses'=>'CREATE TABLE IF NOT EXISTS `statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;',
-										'suppliers'=>'CREATE TABLE `suppliers` (
+										'suppliers'=>'CREATE TABLE IF NOT EXISTS `suppliers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `alias` varchar(128) NOT NULL,
   `description` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'user_tokens'=>'CREATE TABLE `user_tokens` (
+										'user_tokens'=>'CREATE TABLE IF NOT EXISTS `user_tokens` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `user_agent` varchar(40) NOT NULL,
@@ -206,7 +206,7 @@ $tables = array('brands'=>'CREATE TABLE `brands` (
   KEY `expires` (`expires`),
   CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;',
-										'users'=>"CREATE TABLE `users` (
+										'users'=>"CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(254) NOT NULL,
   `username` varchar(32) NOT NULL DEFAULT '',
