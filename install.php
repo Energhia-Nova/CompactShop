@@ -87,14 +87,16 @@ function write_ini_file($assoc_arr, $path, $has_sections=FALSE) {
     return true; 
 }
 
-$tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
+$t_ = (isset($_POST['prefix']) and !empty($_POST['prefix'])) ? trim($_POST['prefix']) : '';
+
+$tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
   `description` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'cart'=>'CREATE TABLE IF NOT EXISTS `cart` (
+										'cart'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'cart` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -102,7 +104,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;',
 
-										'menu_items'=>'CREATE TABLE IF NOT EXISTS `menu_items` (
+										'menu_items'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'menu_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
@@ -112,24 +114,20 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16;',
 
-
-
-
-
-										'options'=>'CREATE TABLE IF NOT EXISTS `options` (
+										'options'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'options` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
   `alias` varchar(256) NOT NULL,
   `value` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'orders'=>'CREATE TABLE IF NOT EXISTS `orders` (
+										'orders'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;',
-										'pages'=>'CREATE TABLE IF NOT EXISTS `pages` (
+										'pages'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
@@ -137,7 +135,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
   `ru_name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;',
-										'products'=>'CREATE TABLE IF NOT EXISTS `products` (
+										'products'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` float NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -150,7 +148,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;',
-										'profile'=>'CREATE TABLE IF NOT EXISTS `profile` (
+										'profile'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `age` int(11) NOT NULL,
@@ -159,41 +157,41 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;',
-										'purchases'=>'CREATE TABLE IF NOT EXISTS `purchases` (
+										'purchases'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'purchases` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;',
-										'roles'=>'CREATE TABLE IF NOT EXISTS `roles` (
+										'roles'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'roles` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'roles_users'=>"CREATE TABLE IF NOT EXISTS `roles_users` (
+										'roles_users'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'roles_users` (
   `user_id` int(10) unsigned NOT NULL,
   `role_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `fk_role_id` (`role_id`),
   CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;",
-										'statuses'=>'CREATE TABLE IF NOT EXISTS `statuses` (
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;',
+										'statuses'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;',
-										'suppliers'=>'CREATE TABLE IF NOT EXISTS `suppliers` (
+										'suppliers'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'suppliers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `alias` varchar(128) NOT NULL,
   `description` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'user_tokens'=>'CREATE TABLE IF NOT EXISTS `user_tokens` (
+										'user_tokens'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'user_tokens` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `user_agent` varchar(40) NOT NULL,
@@ -206,7 +204,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
   KEY `expires` (`expires`),
   CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;',
-										'users'=>"CREATE TABLE IF NOT EXISTS `users` (
+										'users'=>"CREATE TABLE IF NOT EXISTS `".$t_."users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(254) NOT NULL,
   `username` varchar(32) NOT NULL DEFAULT '',
@@ -239,7 +237,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
 					$settings['database']['db_user']=$db_user;
 					$settings['database']['db_host']=$db_host;
 					$settings['database']['db_pass']=$db_pass;
-					$settings['database']['db_table_prefix']="";
+					$settings['database']['db_table_prefix']=$t_;
 					
 					write_ini_file($settings,'application/config/settings.ini',true);
 					
@@ -255,12 +253,12 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
 					{						
 						// Проверим не пуста ли таблица,
 						// а так же создан ли админ на сайте
-						if ($presult = $mysqli->query("SHOW TABLES LIKE 'users'"))
+						if ($presult = $mysqli->query("SHOW TABLES LIKE '".$t_."users'"))
 						{
 							// Сначала проверим существует ли такая таблица вообще users
 							if ($presult->num_rows)
 							{								
-								$user_result = $mysqli->query("SELECT * FROM users");
+								$user_result = $mysqli->query("SELECT * FROM ".$t_."users");
 								
 								while($data[] = $user_result->fetch_assoc())
 								{
@@ -288,72 +286,72 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
 										
 										if ($t=='roles')
 										{
-											$mysqli->query("INSERT INTO `roles` VALUES (1,'login','Login privileges, granted after account confirmation'),(2,'admin','Administrative user, has access to everything.');");
+											$mysqli->query("INSERT INTO `".$t_."roles` VALUES (1,'login','Login privileges, granted after account confirmation'),(2,'admin','Administrative user, has access to everything.');");
 										}
 										
 										if ($t=='pages')
 										{											
-											$mysqli->query("INSERT INTO `pages` VALUES (1,'Face.','face',0,'Вход.'),(2,'Orders.','orders',0,'Заказы.'),(3,'Archive.','archive',0,'Архив.'),(4,'Profile.','profile',0,'Профиль.'),(5,'Contact.','contact',0,'Контакт.'),(6,'Projects.','project',0,'Проэкты.'),(7,'Follow.','follow',0,'Соц.сети.'),(8,'Sign Up.','sign-up',0,'Регистрация'),(9,'Artwork','artwork',6,'Арт.'),(10,'Page. The Magazin','magazin',6,'Страница. Магазин'),(11,'Twitter.','twitter',7,'Твиттер.'),(12,'Facebook.','facebook',7,'Фейсбук.'),(13,'Behance.','behance',7,'Беханс.');");
+											$mysqli->query("INSERT INTO `".$t_."pages` VALUES (1,'Face.','face',0,'Вход.'),(2,'Orders.','orders',0,'Заказы.'),(3,'Archive.','archive',0,'Архив.'),(4,'Profile.','profile',0,'Профиль.'),(5,'Contact.','contact',0,'Контакт.'),(6,'Projects.','project',0,'Проэкты.'),(7,'Follow.','follow',0,'Соц.сети.'),(8,'Sign Up.','sign-up',0,'Регистрация'),(9,'Artwork','artwork',6,'Арт.'),(10,'Page. The Magazin','magazin',6,'Страница. Магазин'),(11,'Twitter.','twitter',7,'Твиттер.'),(12,'Facebook.','facebook',7,'Фейсбук.'),(13,'Behance.','behance',7,'Беханс.');");
 										}
 										
 										if ($t=='brands')
 										{											
-											$mysqli->query("INSERT INTO `brands` VALUES  (1,'apple','Айпл','Описание'),(2,'brand-two','Бренд','Brand Two');");
+											$mysqli->query("INSERT INTO `".$t_."brands` VALUES  (1,'apple','Айпл','Описание'),(2,'brand-two','Бренд','Brand Two');");
 										}
 										
 										if ($t=='menu_items')
 										{
-											$mysqli->query("INSERT INTO `menu_items` VALUES (1,0,'myaso-molochnye','Мясо-Молочные','',1),(3,0,'hlebo-bulochnye','Хлебо-Булочные','',2),(4,1,'myaso-molochnye/myasnye','Мясные','',2),(5,1,'myaso-molochnye/molochnye','Молочные','',1),(6,0,'raznoe','Разное','',4),(7,0,'drinks','Напитки','',3),(9,7,'drinks/cola','Кола (Минералка)','',0),(10,7,'drinks/alcohol','Спиртные','',0),(13,7,'drinks/tea','Чаи','',0),(14,7,'drinks/sok','Соки','',0),(15,10,'drinks/alcohol/wines','Вина','',0);");
+											$mysqli->query("INSERT INTO `".$t_."menu_items` VALUES (1,0,'myaso-molochnye','Мясо-Молочные','',1),(3,0,'hlebo-bulochnye','Хлебо-Булочные','',2),(4,1,'myaso-molochnye/myasnye','Мясные','',2),(5,1,'myaso-molochnye/molochnye','Молочные','',1),(6,0,'raznoe','Разное','',4),(7,0,'drinks','Напитки','',3),(9,7,'drinks/cola','Кола (Минералка)','',0),(10,7,'drinks/alcohol','Спиртные','',0),(13,7,'drinks/tea','Чаи','',0),(14,7,'drinks/sok','Соки','',0),(15,10,'drinks/alcohol/wines','Вина','',0);");
 										}
 										
 										if ($t=='options')
 										{
-											$mysqli->query("INSERT INTO `options` VALUES (1,'Имя магазина','magazin-name','ТестМ');");
+											$mysqli->query("INSERT INTO `".$t_."options` VALUES (1,'Имя магазина','magazin-name','ТестМ');");
 										}
 										
 										if ($t=='orders')
 										{
-											$mysqli->query("INSERT INTO `orders` VALUES (21,17,1),(20,17,2),(19,18,2),(18,18,1),(17,18,2),(16,18,3),(15,18,2);");
+											$mysqli->query("INSERT INTO `".$t_."orders` VALUES (21,17,1),(20,17,2),(19,18,2),(18,18,1),(17,18,2),(16,18,3),(15,18,2);");
 										}
 										
 										if ($t=='products')
 										{
-											$mysqli->query("INSERT INTO `products` VALUES (1,3.5,'Хлеб','hlebo-bulochnye/hleb','Hleb Odnako!',55,0,1,0,'1286910894_bulochka.jpg'),(2,52,'Масло','maslo','		Вот так вот		',50,5,1,0,''),(3,53,'Сыр','syr','Сыр',50,0,1,0,''),(4,50,'Творог','tvorog','Текст индент',50,5,0,0,''),(5,0,'Сметана','smetana','Описание сметаны',52,5,0,0,''),(6,3.5,'Соль','sol','Описание для соли',50,0,0,0,''),(7,50,'Сахар','sahar','test',712,0,0,0,''),(8,50,'Ватра','watra','Ватрушка',50,0,0,0,''),(9,0,'Молоко','moloko','',50,5,0,0,''),(10,50,'Крабы','krabs','Крабовые палочки',50,0,0,0,''),(12,50,'Пряники','pryaniki','Пряники',50,6,0,0,''),(13,50,'Рыба','myaso-molochnye/myasnye/fish','Рыба какая-то',50,4,0,0,'1286910894_bulochka.jpg'),(14,50,'Орбит','raznoe/orbit','Bubble Gum',25,0,0,0,''),(15,50,'Сливы','slyvs','Сливы',50,6,0,0,''),(16,20,'Тесто','testo','',20,0,0,0,''),(33,0,'Черниговское','drinks/chernygowskoe','horosho',0,0,0,0,'1286910894_bulochka.jpg'),(37,3,'Яблочный сок','drinks/sok/apple','da da',53,14,0,0,''),(23,23,'Квас','myaso-molochnye/myasnye/kvas','еуыывыв',3,0,0,0,''),(38,3,'Бринза','raznoe/brinza','Вот так Бринза!',5,6,0,0,''),(39,5,'Виноградный','drinks/sok/vinogradny','',5,14,0,0,''),(40,3,'Мак','raznoe/mac','',4,6,0,0,'');");
+											$mysqli->query("INSERT INTO `".$t_."products` VALUES (1,3.5,'Хлеб','hlebo-bulochnye/hleb','Hleb Odnako!',55,0,1,0,'1286910894_bulochka.jpg'),(2,52,'Масло','maslo','		Вот так вот		',50,5,1,0,''),(3,53,'Сыр','syr','Сыр',50,0,1,0,''),(4,50,'Творог','tvorog','Текст индент',50,5,0,0,''),(5,0,'Сметана','smetana','Описание сметаны',52,5,0,0,''),(6,3.5,'Соль','sol','Описание для соли',50,0,0,0,''),(7,50,'Сахар','sahar','test',712,0,0,0,''),(8,50,'Ватра','watra','Ватрушка',50,0,0,0,''),(9,0,'Молоко','moloko','',50,5,0,0,''),(10,50,'Крабы','krabs','Крабовые палочки',50,0,0,0,''),(12,50,'Пряники','pryaniki','Пряники',50,6,0,0,''),(13,50,'Рыба','myaso-molochnye/myasnye/fish','Рыба какая-то',50,4,0,0,'1286910894_bulochka.jpg'),(14,50,'Орбит','raznoe/orbit','Bubble Gum',25,0,0,0,''),(15,50,'Сливы','slyvs','Сливы',50,6,0,0,''),(16,20,'Тесто','testo','',20,0,0,0,''),(33,0,'Черниговское','drinks/chernygowskoe','horosho',0,0,0,0,'1286910894_bulochka.jpg'),(37,3,'Яблочный сок','drinks/sok/apple','da da',53,14,0,0,''),(23,23,'Квас','myaso-molochnye/myasnye/kvas','еуыывыв',3,0,0,0,''),(38,3,'Бринза','raznoe/brinza','Вот так Бринза!',5,6,0,0,''),(39,5,'Виноградный','drinks/sok/vinogradny','',5,14,0,0,''),(40,3,'Мак','raznoe/mac','',4,6,0,0,'');");
 										}
 										
 										if ($t=='profile')
 										{
-											$mysqli->query("INSERT INTO `profile` VALUES (9,17,25,'','skype:vasi');");
+											$mysqli->query("INSERT INTO `".$t_."profile` VALUES (9,17,25,'','skype:vasi');");
 										}
 										
 										if ($t=='purchases')
 										{
-											$mysqli->query("INSERT INTO `purchases` VALUES (20,20,1,1),(19,20,8,1),(18,20,2,1),(17,20,3,1),(16,19,3,1),(15,19,1,3),(14,19,2,2),(21,20,7,1),(22,20,6,1),(23,20,4,1),(24,20,5,1),(25,21,7,3),(26,21,6,1),(27,21,5,1),(28,21,4,1),(29,21,3,1),(30,21,2,1),(31,21,1,1);");
+											$mysqli->query("INSERT INTO `".$t_."purchases` VALUES (20,20,1,1),(19,20,8,1),(18,20,2,1),(17,20,3,1),(16,19,3,1),(15,19,1,3),(14,19,2,2),(21,20,7,1),(22,20,6,1),(23,20,4,1),(24,20,5,1),(25,21,7,3),(26,21,6,1),(27,21,5,1),(28,21,4,1),(29,21,3,1),(30,21,2,1),(31,21,1,1);");
 										}
 										
 										if ($t=='roles')
 										{
-											$mysqli->query("INSERT INTO `roles` VALUES (1,'login','Login privileges, granted after account confirmation'),(2,'admin','Administrative user, has access to everything.');");
+											$mysqli->query("INSERT INTO `".$t_."roles` VALUES (1,'login','Login privileges, granted after account confirmation'),(2,'admin','Administrative user, has access to everything.');");
 										}
 										
 										if ($t=='roles_users')
 										{
-											$mysqli->query("INSERT INTO `roles_users` VALUES (10,1),(11,1),(12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(17,2);");
+											$mysqli->query("INSERT INTO `".$t_."roles_users` VALUES (10,1),(11,1),(12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(17,2);");
 										}
 										
 										if ($t=='statuses')
 										{
-											$mysqli->query("INSERT INTO `statuses` VALUES (1,'в ожидании'),(2,'готов'),(3,'завершен');");
+											$mysqli->query("INSERT INTO `".$t_."statuses` VALUES (1,'в ожидании'),(2,'готов'),(3,'завершен');");
 										}
 										
 										if ($t=='suppliers')
 										{
-											$mysqli->query("INSERT INTO `suppliers` VALUES (1,'Поставщик','supplier','Поставщик такой-то');");
+											$mysqli->query("INSERT INTO `".$t_."suppliers` VALUES (1,'Поставщик','supplier','Поставщик такой-то');");
 										}
 										
 										if ($t=='users')
 										{
-											$mysqli->query("INSERT INTO `users` VALUES (10,'test123@gmail.com','test123','f03c1289510e0cf3c6ae810ba6aa3a064e52b5c4e7d2346ae6d27714e0f25b95',0,NULL,'89051016e2662c1a4f1804b198cd9d5ffce04f74',0,0),(11,'test11@gmail.com','test11','bfd1b5cf2aa5b66ba86538e53d1c97fad280f866db5086b5f7bd572d968809e0',0,NULL,'a5bc25fc656e1c75d6190019f6703ff2eca9068c',0,0),(12,'test12@gmail.com','test12','1d292d76609038da42a22fbb891949ee6f3d48a8fad38bc4f221832da04e6011',0,NULL,'2e7667d4ef8fad834f7de3efdb9aff340ea169ce',0,0),(13,'test13@gmail.com','test13','23a512525ab07e407f3f5a666f706183e9082808e644bc8cb57eff2b956ae3b8',0,NULL,'30d99e87ece069fcaa074aaf363087e125c40ea1',0,0),(14,'test14@gmail.com','test14','57974649ddbad188a4154e66386409927e5ab4b484ad74c61e3e8c7158cb59f7',0,NULL,'e42127304802fa7741af293fe977ffdcd9ff42bd',0,0),(15,'test15@gmail.com','test15','fd647ffe55ef6af294fbea22ac5ca8bbbb46be8f20af0276c569233f99228680',0,NULL,'69797c1ecef4c336b3c927aecb345a2170d3050d',0,0),(16,'test16@gmail.com','test16','92b01be29f7f63455481fb71b130464d9febe2085b5c0f9b5eca7adf3ea04d2f',1,1389368626,'639e4303d43bd353504eecebe96b9bc99c93f63d',1,27928),(17,'progeram1@gmail.com','admin','be482f1299ee08f664dda6faac3f04ae4de188e6e698f305efaac42095039e32',23,1394908769,'a7d23316553427f491b601e2eab08205869e9222',1,76431),(18,'progeram@gmail.com','prostouser','adf9b94ea7d63641c2bcf172eec71c0e9c38342e7f7c3e29877ada9769083b50',6,1394800185,'a64a80bd75197036000e9eda4bbd0c5dabd35cab',1,94322);");
+											$mysqli->query("INSERT INTO `".$t_."users` VALUES (10,'test123@gmail.com','test123','f03c1289510e0cf3c6ae810ba6aa3a064e52b5c4e7d2346ae6d27714e0f25b95',0,NULL,'89051016e2662c1a4f1804b198cd9d5ffce04f74',0,0),(11,'test11@gmail.com','test11','bfd1b5cf2aa5b66ba86538e53d1c97fad280f866db5086b5f7bd572d968809e0',0,NULL,'a5bc25fc656e1c75d6190019f6703ff2eca9068c',0,0),(12,'test12@gmail.com','test12','1d292d76609038da42a22fbb891949ee6f3d48a8fad38bc4f221832da04e6011',0,NULL,'2e7667d4ef8fad834f7de3efdb9aff340ea169ce',0,0),(13,'test13@gmail.com','test13','23a512525ab07e407f3f5a666f706183e9082808e644bc8cb57eff2b956ae3b8',0,NULL,'30d99e87ece069fcaa074aaf363087e125c40ea1',0,0),(14,'test14@gmail.com','test14','57974649ddbad188a4154e66386409927e5ab4b484ad74c61e3e8c7158cb59f7',0,NULL,'e42127304802fa7741af293fe977ffdcd9ff42bd',0,0),(15,'test15@gmail.com','test15','fd647ffe55ef6af294fbea22ac5ca8bbbb46be8f20af0276c569233f99228680',0,NULL,'69797c1ecef4c336b3c927aecb345a2170d3050d',0,0),(16,'test16@gmail.com','test16','92b01be29f7f63455481fb71b130464d9febe2085b5c0f9b5eca7adf3ea04d2f',1,1389368626,'639e4303d43bd353504eecebe96b9bc99c93f63d',1,27928),(17,'progeram1@gmail.com','admin','be482f1299ee08f664dda6faac3f04ae4de188e6e698f305efaac42095039e32',23,1394908769,'a7d23316553427f491b601e2eab08205869e9222',1,76431),(18,'progeram@gmail.com','prostouser','adf9b94ea7d63641c2bcf172eec71c0e9c38342e7f7c3e29877ada9769083b50',6,1394800185,'a64a80bd75197036000e9eda4bbd0c5dabd35cab',1,94322);");
 										}
 																				
 									}
@@ -372,22 +370,22 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
 								{
 									$password = hash_hmac('sha256', $pass, 'lk6819lkasjdlkjaw912udkajshd');
 									// Занесем амдина в базу даных
-									$mysqli->query("INSERT INTO users(username,email,password,accepted,confirmed,code) VALUES('".$login."','".$email."','".$password."',1,1,1)");
+									$mysqli->query("INSERT INTO ".$t_."users(username,email,password,accepted,confirmed,code) VALUES('".$login."','".$email."','".$password."',1,1,1)");
 									
 									if ($mysqli->insert_id)
 									{
 										// Установим роль этому пользователю
 										$id = $mysqli->insert_id;
-										$mysqli->query("INSERT INTO `roles_users` VALUES (".$id.",1),(".$id.",2)");
+										$mysqli->query("INSERT INTO `".$t_."roles_users` VALUES (".$id.",1),(".$id.",2)");
 									}
 								}
 																
-								$dresult = $mysqli->query("SHOW TABLES LIKE 'users'");
+								$dresult = $mysqli->query("SHOW TABLES LIKE '".$t_."users'");
 								
 								// Проверка на успешную установку
 								if ($dresult->num_rows)
 								{								
-									$user_result = $mysqli->query("SELECT * FROM users");
+									$user_result = $mysqli->query("SELECT * FROM ".$t_."users");
 									
 									while($data[] = $user_result->fetch_assoc())
 									{
@@ -438,6 +436,9 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `brands` (
 		</tr>
 		<tr>
 			<td>Имя БД</td><td><input type="text" value="" name="db_name" /></td>
+		</tr>
+		<tr>
+			<td>Префикс Таблиц</td><td><input type="text" value="" name="prefix" /></td>
 		</tr>
 		<tr>
 			<td>Сервер MySQL</td><td><input type="text" value="" name="db_host" /></td>
