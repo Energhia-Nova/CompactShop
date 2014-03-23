@@ -7,3 +7,9 @@ Compact Shop CMS based on a Kohana Framework 3.3
 
 - [Пример Сайта](http://energhia-nova.github.io/CompactShop/)
 - [Пример админки](http://energhia-nova.github.io/CompactShop/admin)
+
+### Установка
+
+Тестовый вход для пользователя:
+- prostouser
+- testtest
