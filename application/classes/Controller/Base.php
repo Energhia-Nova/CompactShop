@@ -30,8 +30,8 @@ abstract Class Controller_Base extends Controller_Template {
 		//$pages = Kohana::$config->load('pages');
 		$vhormenu = View::factory('hormenu')->bind('pages',$pages)->bind('total_price',$total_price);
         $pages = ORM::factory('page')->get_pages();
-        $this->template->title = 'Compact Shop';
-        $this->template->description = 'Development Magazin Mode';
+        $this->template->title = 'CompactShop CMS';
+        $this->template->description = 'CompactShop CMS';
 		$this->template->categories = Menu::factory()->render();
         $this->template->content = '';
 		$this->template->pagination = '';
