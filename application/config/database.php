@@ -1,5 +1,7 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
+$settings = parse_ini_file("settings.ini",true);
+
 return array
 (
 	'default' => array
@@ -18,13 +20,13 @@ return array
 			 *
 			 * Ports and sockets may be appended to the hostname.
 			 */
-			'hostname'   => 'localhost',
-			'database'   => 'compactshop',
-			'username'   => 'root',
-			'password'   => '',
+			'hostname'   => $settings['database']['db_host'],
+			'database'   => $settings['database']['db_name'],
+			'username'   => $settings['database']['db_user'],
+			'password'   => $settings['database']['db_pass'],
 			'persistent' => FALSE,
 		),
-		'table_prefix' => '',
+		'table_prefix' => $settings['database']['db_table_prefix'],
 		'charset'      => 'utf8',
 		'caching'      => FALSE,
 	),
@@ -39,9 +41,9 @@ return array
 			 * string   password    database password
 			 * boolean  persistent  use persistent connections?
 			 */
-			'dsn'        => 'mysql:host=localhost;dbname=compactshop',
-			'username'   => 'root',
-			'password'   => '',
+			'dsn'        => 'mysql:host='.$settings['database']['db_host'].';dbname='.$settings['database']['db_name'],
+			'username'   => $settings['database']['db_user'],
+			'password'   => $settings['database']['db_pass'],
 			'persistent' => FALSE,
 		),
 		/**
@@ -49,7 +51,7 @@ return array
 		 *
 		 * string   identifier  set the escaping identifier
 		 */
-		'table_prefix' => '',
+		'table_prefix' => $settings['database']['db_table_prefix'],
 		'charset'      => 'utf8',
 		'caching'      => FALSE,
 	),

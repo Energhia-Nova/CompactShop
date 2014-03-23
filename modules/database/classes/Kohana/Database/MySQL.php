@@ -26,14 +26,14 @@ class Kohana_Database_MySQL extends Database {
 	{
 		if ($this->_connection)
 			return;
-
+			
 		if (Database_MySQL::$_set_names === NULL)
 		{
 			// Determine if we can use mysql_set_charset(), which is only
 			// available on PHP 5.2.3+ when compiled against MySQL 5.0+
 			Database_MySQL::$_set_names = ! function_exists('mysql_set_charset');
 		}
-
+		
 		// Extract the connection parameters, adding required variabels
 		extract($this->_config['connection'] + array(
 			'database'   => '',

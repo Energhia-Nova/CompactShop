@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `menu_items` (
   `title` text NOT NULL,
   `classes` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Zrzut danych tabeli `menu_items`
