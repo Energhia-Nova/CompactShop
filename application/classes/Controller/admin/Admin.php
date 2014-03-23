@@ -11,8 +11,8 @@ abstract Class Controller_Admin_Admin extends Controller_Template {
 		if (!Auth::instance()->logged_in("admin")) $this->redirect(URL::base(true));
                 
         $funcview = View::factory('admin/functional/'.$this->request->controller());
-        $this->template->title = 'Magazin Panel';
-        $this->template->description = 'Development Magazin Mode';
+        $this->template->title = 'CompactShop CMS Admin';
+        $this->template->description = 'CompactShop CMS Admin';
         $this->template->functional = $funcview;
         $this->template->content = '';
         $this->template->styles = array('admin');
