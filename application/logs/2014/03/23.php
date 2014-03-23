@@ -211,3 +211,15 @@
 2014-03-23 15:36:34 --- CRITICAL: ErrorException [ 1 ]: Call to a member function headers() on a non-object ~ SYSPATH\classes\Kohana\Request\Client.php [ 119 ] in :
 2014-03-23 15:36:34 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
 #1 {main} in :
+2014-03-23 15:47:12 --- CRITICAL: Database_Exception [ 1049 ]: Unknown database 'compactshop' ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 108 ] in C:\workspace\sites\mag\www\modules\database\classes\Kohana\Database\MySQL.php:75
+2014-03-23 15:47:12 --- DEBUG: #0 C:\workspace\sites\mag\www\modules\database\classes\Kohana\Database\MySQL.php(75): Kohana_Database_MySQL->_select_db('compactshop')
+#1 C:\workspace\sites\mag\www\modules\database\classes\Kohana\Database\MySQL.php(171): Kohana_Database_MySQL->connect()
+#2 C:\workspace\sites\mag\www\modules\database\classes\Kohana\Database\MySQL.php(358): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#3 C:\workspace\sites\mag\www\modules\orm\classes\Kohana\ORM.php(1665): Kohana_Database_MySQL->list_columns('menu_items')
+#4 C:\workspace\sites\mag\www\modules\orm\classes\Kohana\ORM.php(441): Kohana_ORM->list_columns()
+#5 C:\workspace\sites\mag\www\modules\orm\classes\Kohana\ORM.php(386): Kohana_ORM->reload_columns()
+#6 C:\workspace\sites\mag\www\modules\orm\classes\Kohana\ORM.php(254): Kohana_ORM->_initialize()
+#7 C:\workspace\sites\mag\www\modules\orm\classes\Kohana\ORM.php(46): Kohana_ORM->__construct(NULL)
+#8 C:\workspace\sites\mag\www\application\bootstrap.php(174): Kohana_ORM::factory('menu_item')
+#9 C:\workspace\sites\mag\www\index.php(102): require('C:\workspace\si...')
+#10 {main} in C:\workspace\sites\mag\www\modules\database\classes\Kohana\Database\MySQL.php:75

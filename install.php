@@ -45,6 +45,48 @@ else
 
 <?php
 
+function write_ini_file($assoc_arr, $path, $has_sections=FALSE) { 
+    $content = ""; 
+    if ($has_sections) { 
+        foreach ($assoc_arr as $key=>$elem) { 
+            $content .= "[".$key."]\n"; 
+            foreach ($elem as $key2=>$elem2) { 
+                if(is_array($elem2)) 
+                { 
+                    for($i=0;$i<count($elem2);$i++) 
+                    { 
+                        $content .= $key2."[] = \"".$elem2[$i]."\"\n"; 
+                    } 
+                } 
+                else if($elem2=="") $content .= $key2." = \n"; 
+                else $content .= $key2." = \"".$elem2."\"\n"; 
+            } 
+        } 
+    } 
+    else { 
+        foreach ($assoc_arr as $key=>$elem) { 
+            if(is_array($elem)) 
+            { 
+                for($i=0;$i<count($elem);$i++) 
+                { 
+                    $content .= $key2."[] = \"".$elem[$i]."\"\n"; 
+                } 
+            } 
+            else if($elem=="") $content .= $key2." = \n"; 
+            else $content .= $key2." = \"".$elem."\"\n"; 
+        } 
+    } 
+
+    if (!$handle = fopen($path, 'w')) { 
+        return false; 
+    } 
+    if (!fwrite($handle, $content)) { 
+        return false; 
+    } 
+    fclose($handle); 
+    return true; 
+}
+
 $tables = array('brands'=>'CREATE TABLE `brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` varchar(256) NOT NULL,
@@ -63,12 +105,12 @@ $tables = array('brands'=>'CREATE TABLE `brands` (
 										'menu_items'=>'CREATE TABLE IF NOT EXISTS `menu_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
-  `url` text NOT NULL,
-  `title` text NOT NULL,
-  `classes` text NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `classes` varchar(128) NOT NULL,
   `position` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16;',
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16;',
 
 
 
@@ -192,6 +234,14 @@ $tables = array('brands'=>'CREATE TABLE `brands` (
 					$db_user = trim($_POST['db_user']);
 					$db_host = trim($_POST['db_host']);
 					$db_pass = trim($_POST['db_pass']);
+					
+					$settings['database']['db_name']=$db_name;
+					$settings['database']['db_user']=$db_user;
+					$settings['database']['db_host']=$db_host;
+					$settings['database']['db_pass']=$db_pass;
+					$settings['database']['db_table_prefix']="";
+					
+					write_ini_file($settings,'application/config/settings.ini',true);
 					
 					$mysqli = new mysqli($db_host,$db_user,$db_pass,$db_name);
 																				
