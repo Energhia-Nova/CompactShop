@@ -3,13 +3,13 @@ CompactShop
 
 Compact Shop CMS based on a Kohana Framework 3.3
 
-Группа ВКонтакте http://vk.com/CompactShopCMS
+Gruppe VKontakte http://vk.com/CompactShopCMS
 
 - [Пример Сайта](http://energhia-nova.github.io/CompactShop/)
 - [Пример админки](http://energhia-nova.github.io/CompactShop/admin)
 
-### Установка
+### Installation
 
-Тестовый вход для пользователя:
+Testeingang für den Benutzer:
 - prostouser
 - testtest
