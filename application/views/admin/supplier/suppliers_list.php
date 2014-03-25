@@ -1,13 +1,13 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Поставщики</a>
+    <a class="brand" href="#">Lieferanten</a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
 <tr>
-<th>Имя</th>
-<th>Алиас</th>
-<th>Описание</th>
+<th>Name</th>
+<th>Alias</th>
+<th>Beschreibung</th>
 <th></th>
 </tr>
 <?php foreach ($suppliers as $supplier):?>

@@ -11,12 +11,10 @@ class Controller_Ajax extends Controller_Base {
 	{
 		if (!Auth::instance()->logged_in()) exit;
 		
-		/* Загляним в нашу таблицу с заказами и проверим
-		   существует ли текущий заказ
-		*/
+		/* Beachten Sie unsere Tabelle mit Bestellungen und prüfen, ob es einen aktuellen Auftrags */
 		$count = ORM::factory('order')->where('user_id','=',Auth::instance()->get_user()->id)->where('status_id','=',1)->count_all();
 		
-		/* Если есть уже заказ данного пользователя */
+		/* Wenn es bereits ein Mitglied dieser Ordnung */
 		if ($count>0)
 		{
 			echo $count;
@@ -33,19 +31,19 @@ class Controller_Ajax extends Controller_Base {
 	{		
 		if (!Auth::instance()->logged_in()) exit;
 		
-		/* Так же проверка, если у пользователя уже есть заказ, то ничего ни делаем */
+		/* Überprüfen Sie auch, wenn Sie bereits einen Auftrag, oder tun */
 		$count = ORM::factory('order')->where('user_id','=',Auth::instance()->get_user()->id)->where('status_id','=',1)->count_all();
 		
-		/* Если есть уже заказ данного пользователя */
+		/* Wenn es bereits ein Mitglied dieser Ordnung */
 		if ($count>0)
 		{
 			exit;
 		}
 		
-		// Добавка/отмена продукта в корзину
+		// Hinzufügen / Entfernen von der Droge den Warenkorb
 		if ($post = $this->request->post())
 		{
-			// Отмена покупки
+			// Abbrechen Kauf
 			if (isset($post['func']) and $post['func']=='cancel')
 			{
 				$cart = ORM::factory('cart',array('user_id'=>Auth::instance()->get_user()->id, 'product_id'=>$post['product_id']));
@@ -67,26 +65,25 @@ class Controller_Ajax extends Controller_Base {
 			}
 		
 			$cart = ORM::factory('cart',array('user_id'=>Auth::instance()->get_user()->id,'product_id'=>$post['product_id']));
-			// Если есть такой продукт в базе, то увеличим кол-во
+			// Wenn ein solches Produkt in der Datenbank, und die Zahl der
 			if ($cart->loaded())
 			{
 				$amount = $cart->amount;
 				$amount++;
 				$cart->amount=$amount;
 				$cart->save();
-			} // Если еще нету такого продукта в базе, то добавим
+			} // Wenn immer noch kein solches Produkt in der Datenbank, dann fügen
 			else
 			{		
-				// Если заказа не существует, создадим, в корзине заказов новый заказ
+				// Wenn die Reihenfolge nicht existiert, erstellen, neue Aufträge im Warenkorb zur Kasse
 				$cart = ORM::factory('cart');
 				$cart->user_id = Auth::instance()->get_user()->id;
 				$cart->product_id = $post['product_id'];
 				$cart->amount = 1;
 				$cart->save();
 				
-				/* Как только в корзине будет сформирован заказ
-				   корзина будет очищина и все будет добавлено в
-				   таблицу готовых заказов
+				/* Einmal in den Warenkorb erstellt werden, um Warenkorb wird gelöscht 
+					und alle werden auf den Tisch bereit zu bestellen hinzugefügt werden
 				*/
 			}
 		}
@@ -95,7 +92,7 @@ class Controller_Ajax extends Controller_Base {
 	
 	public function action_order()
 	{
-		// Сюда так же будет входить проверка на админа
+		// Dies wird auch eine Überprüfung für den Admin
 		if (!Auth::instance()->logged_in()) exit;
 	
 		if ($post = $this->request->post())

@@ -4,18 +4,7 @@ class Controller_Admin_Categories extends Controller_Admin_Admin {
 
     // Categories list
     public function action_index()
-    {
-        /*if ($post = $this->request->post())
-        {
-			$category = ORM::factory('Category');
-			$category->parent_id = ORM::factory('Category')->where('title','=',trim($post['subcategory']))->find()->id;
-			$category->parent_id = 0;
-			$category->classes = "";
-			$category->title = $post['name'];
-			$category->url = trim($post['url']);
-			$category->save();
-        }*/
-        
+    {       
         $categories = Menu::factory()->render();
         $view = View::factory('admin/category/categories_list')->bind('categories',$categories);
         $this->template->content = $view;

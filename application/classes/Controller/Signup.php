@@ -8,13 +8,7 @@ class Controller_Signup extends Controller_Base {
 		if ($post = $this->request->post())
 		{					
 			$post['username'] = $post['login'];
-			
-			/*$user = ORM::factory('user');
-			$user->username = $post['login'];
-			$user->password = $post['password1'];
-			$user->email = $post['email'];
-			$user->save();*/
-			
+
 			$post['accepted']=sha1(Cookie::$salt.'may'.$post['username']);
 			$post['code'] = mt_rand(10000,99999);
 			
@@ -31,16 +25,8 @@ class Controller_Signup extends Controller_Base {
 			{
 				$errors = $e->errors('models');
 				
-				// echo Debug::vars($errors);
 			}
-						
-			// $user->save();
-			
-			/*$user = ORM::factory('user')->create_user($_POST,array(
-				'username',
-				'password',
-				'email'
-			));*/			
+								
 		}
 				
 		$this->template->content = View::factory('regform');

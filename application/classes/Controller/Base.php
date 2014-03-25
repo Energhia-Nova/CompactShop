@@ -17,7 +17,7 @@ abstract Class Controller_Base extends Controller_Template {
 		{
 			$cart = ORM::factory('cart');
 			$purchases = $cart->where('user_id','=',Auth::instance()->get_user()->id)->find_all();
-			/* тут мы должны посчитать цену всех товаров в корзине */
+			/* Hier müssen wir den Preis für alle Artikel im Warenkorb berechnen */
 			$total_price = 0;
 			foreach ($purchases as $p)
 			{

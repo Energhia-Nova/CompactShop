@@ -22,7 +22,7 @@ else
  * @link http://kohanaframework.org/guide/using.configuration
  * @link http://www.php.net/manual/timezones
  */
-date_default_timezone_set('Europe/Kiev');
+date_default_timezone_set('Europe/Berlin');
 
 /**
  * Set the default locale.
@@ -139,7 +139,7 @@ Route::set('error', 'error/<action>(/<message>)', array('action' => '[0-9]++', '
                 'controller' => 'error',
 ));
  
-// Админский роут на редактирование заказа
+// admin order edition
 Route::set('ordedit','admin/order/edit/<id>')
 	->defaults(array(
 		'directory'=>'admin',
@@ -147,7 +147,7 @@ Route::set('ordedit','admin/order/edit/<id>')
 		'action'=>'edit',
 	));
 	
-// Админский роут на редактирование заказа
+// admin order remove
 Route::set('orderem','admin/order/remove/<id>')
 	->defaults(array(
 		'directory'=>'admin',

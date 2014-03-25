@@ -12,9 +12,9 @@ class Controller_Admin_Email extends Controller_Admin_Admin {
 			Email::connect($config);
 					 
 			$to = $post['email'];
-			$subject = 'Сообщение от Коханой..т.е. Коханы.';
-			$from = 'magazin';
-			$message = 'Проверка связи';
+			$subject = 'Message from Kohana Framework Site';
+			$from = 'CompactShopCMS';
+			$message = 'Probe Email';
 		 
 			Email::send($to, $from, $subject, $message, $html = false);
 		}

@@ -26,31 +26,31 @@
 <div id="menu">
 <ul id="nav">
     <li>
-        <a class="atem" href="/admin">Панель</a>
+        <a class="atem" href="/admin">Platte</a>
     </li>
 	<li>
-        <a href="/admin/orders">Заказы</a>
+        <a href="/admin/orders">Bestellungen</a>
     </li>
     <li>
-        <a href="/admin/users">Пользователи</a>
+        <a href="/admin/users">Benutzer</a>
     </li>
     <li>
-        <a href="/admin/products">Продукты</a>
+        <a href="/admin/products">Produkte</a>
     </li>
     <li>
-        <a href="/admin/categories">Категории</a>
+        <a href="/admin/categories">Kategorien</a>
     </li>
     <li>
-        <a href="/admin/brands">Бренды</a>
+        <a href="/admin/brands">Marken</a>
     </li>
         <li>
-        <a href="/admin/suppliers">Поставщики</a>
+        <a href="/admin/suppliers">Lieferanten</a>
     </li>
 	<li>
-        <a href="/admin/options">Опции</a>
+        <a href="/admin/options">Optionen</a>
     </li>
 </ul>
-<a style="float:right; margin-right: 5px; padding-top:1px;" href="/"><small>в</small> Магазин</a>
+<a style="float:right; margin-right: 5px; padding-top:1px;" href="/"><small>im</small> Geschäft</a>
 </div>
 </div>
  <div id="leftsidebar">

@@ -1,14 +1,14 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Заказы</a>
+    <a class="brand" href="#">Bestellungen</a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
 <tr>
 <th>№</th>
-<th>Автор</th>
-<th>Статус</th>
-<th>Сумма</th>
+<th>Autor</th>
+<th>Status</th>
+<th>Summa</th>
 </tr>
 <?php foreach ($orders as $order):?>
 <tr>

@@ -243,19 +243,19 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 					
 					$mysqli = new mysqli($db_host,$db_user,$db_pass,$db_name);
 																				
-					/* Проверка соединения */
+					/* Überprüfen der Verbindung */
 					if ($mysqli->connect_errno)
 					{
-						printf("Не удалось подключиться: %s\n",$mysqli->connect_errno);
+						printf("Verbindung fehlgeschlagen: %s\n",$mysqli->connect_errno);
 						exit();
 					}
 					else
 					{						
-						// Проверим не пуста ли таблица,
-						// а так же создан ли админ на сайте
+						// Überprüfen Sie, ob die Tabelle nicht leer ist,
+						// und festgestellt, ob der Admin-Website
 						if ($presult = $mysqli->query("SHOW TABLES LIKE '".$t_."users'"))
 						{
-							// Сначала проверим существует ли такая таблица вообще users
+							// Bitte überprüfen Sie, ob es eine solche Tabelle alle Benutzer
 							if ($presult->num_rows)
 							{								
 								$user_result = $mysqli->query("SELECT * FROM ".$t_."users");
@@ -267,7 +267,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 																
 								if (!empty($data))
 								{
-									echo '<p id="install" class="pass">Компакт Шоп Был Установлен, удалите файл install.php</p>';
+									echo '<p id="install" class="pass">CompactShop erfolgreich installiert wurde, löschen Sie die Datei install.php</p>';
 								}
 							}
 							else
@@ -291,22 +291,22 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 										
 										if ($t=='pages')
 										{											
-											$mysqli->query("INSERT INTO `".$t_."pages` VALUES (1,'Face.','face',0,'Вход.'),(2,'Orders.','orders',0,'Заказы.'),(3,'Archive.','archive',0,'Архив.'),(4,'Profile.','profile',0,'Профиль.'),(5,'Contact.','contact',0,'Контакт.'),(6,'Projects.','project',0,'Проэкты.'),(7,'Follow.','follow',0,'Соц.сети.'),(8,'Sign Up.','sign-up',0,'Регистрация'),(9,'Artwork','artwork',6,'Арт.'),(10,'Page. The Magazin','magazin',6,'Страница. Магазин'),(11,'Twitter.','twitter',7,'Твиттер.'),(12,'Facebook.','facebook',7,'Фейсбук.'),(13,'Behance.','behance',7,'Беханс.');");
+											$mysqli->query("INSERT INTO `".$t_."pages` VALUES (1,'Face.','face',0,'Eingang.'),(2,'Orders.','orders',0,'Bestellungen.'),(3,'Archive.','archive',0,'Archiv.'),(4,'Profile.','profile',0,'Profil.'),(5,'Contact.','contact',0,'Kontakt.'),(6,'Projects.','projects',0,'Projekte.'),(7,'Follow.','follow',0,'Sozial Netz.'),(8,'Sign Up.','sign-up',0,'Registrierung'),(9,'Artwork','artwork',6,'Art.'),(10,'Page. The Magazin','magazin',6,'Seite. Geschäft'),(11,'Twitter.','twitter',7,'Twitter.'),(12,'Facebook.','facebook',7,'Facebook.'),(13,'Behance.','behance',7,'Bechans.');");
 										}
 										
 										if ($t=='brands')
 										{											
-											$mysqli->query("INSERT INTO `".$t_."brands` VALUES  (1,'apple','Айпл','Описание'),(2,'brand-two','Бренд','Brand Two');");
+											$mysqli->query("INSERT INTO `".$t_."brands` VALUES  (1,'apple','Apple','Beschreibung'),(2,'brand-two','Brand','Brand Two');");
 										}
 										
 										if ($t=='menu_items')
 										{
-											$mysqli->query("INSERT INTO `".$t_."menu_items` VALUES (1,0,'myaso-molochnye','Мясо-Молочные','',1),(3,0,'hlebo-bulochnye','Хлебо-Булочные','',2),(4,1,'myaso-molochnye/myasnye','Мясные','',2),(5,1,'myaso-molochnye/molochnye','Молочные','',1),(6,0,'raznoe','Разное','',4),(7,0,'drinks','Напитки','',3),(9,7,'drinks/cola','Кола (Минералка)','',0),(10,7,'drinks/alcohol','Спиртные','',0),(13,7,'drinks/tea','Чаи','',0),(14,7,'drinks/sok','Соки','',0),(15,10,'drinks/alcohol/wines','Вина','',0);");
+											$mysqli->query("INSERT INTO `".$t_."menu_items` VALUES (1,0,'fleisch-und-milchprodukte','Fleisch-und Milchprodukte','',1),(3,0,'baeckerei','Bäckerei','',2),(4,1,'fleisch-und -milchprodukte/fleisch','Fleisch','',2),(5,1,'fleisch-und-milchprodukte/molkerei','Molkerei','',1),(6,0,'verschiedenes','Verschiedenes','',4),(7,0,'getraenke','Getränke','',3),(9,7,'getraenke/cola','Cola (Mineralwasser)','',0),(10,7,'getraenke/alcohol','Alkohol','',0),(13,7,'getraenke/tees','Tees','',0),(14,7,'getraenke/saefte','Säfte','',0),(15,10,'getraenke/alcohol/wine','Wein','',0);");
 										}
 										
 										if ($t=='options')
 										{
-											$mysqli->query("INSERT INTO `".$t_."options` VALUES (1,'Имя магазина','magazin-name','ТестМ');");
+											$mysqli->query("INSERT INTO `".$t_."options` VALUES (1,'Geschäft Name','magazin-name','Geschäft');");
 										}
 										
 										if ($t=='orders')
@@ -316,7 +316,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 										
 										if ($t=='products')
 										{
-											$mysqli->query("INSERT INTO `".$t_."products` VALUES (1,3.5,'Хлеб','hlebo-bulochnye/hleb','Hleb Odnako!',55,0,1,0,'1286910894_bulochka.jpg'),(2,52,'Масло','maslo','		Вот так вот		',50,5,1,0,''),(3,53,'Сыр','syr','Сыр',50,0,1,0,''),(4,50,'Творог','tvorog','Текст индент',50,5,0,0,''),(5,0,'Сметана','smetana','Описание сметаны',52,5,0,0,''),(6,3.5,'Соль','sol','Описание для соли',50,0,0,0,''),(7,50,'Сахар','sahar','test',712,0,0,0,''),(8,50,'Ватра','watra','Ватрушка',50,0,0,0,''),(9,0,'Молоко','moloko','',50,5,0,0,''),(10,50,'Крабы','krabs','Крабовые палочки',50,0,0,0,''),(12,50,'Пряники','pryaniki','Пряники',50,6,0,0,''),(13,50,'Рыба','myaso-molochnye/myasnye/fish','Рыба какая-то',50,4,0,0,'1286910894_bulochka.jpg'),(14,50,'Орбит','raznoe/orbit','Bubble Gum',25,0,0,0,''),(15,50,'Сливы','slyvs','Сливы',50,6,0,0,''),(16,20,'Тесто','testo','',20,0,0,0,''),(33,0,'Черниговское','drinks/chernygowskoe','horosho',0,0,0,0,'1286910894_bulochka.jpg'),(37,3,'Яблочный сок','drinks/sok/apple','da da',53,14,0,0,''),(23,23,'Квас','myaso-molochnye/myasnye/kvas','еуыывыв',3,0,0,0,''),(38,3,'Бринза','raznoe/brinza','Вот так Бринза!',5,6,0,0,''),(39,5,'Виноградный','drinks/sok/vinogradny','',5,14,0,0,''),(40,3,'Мак','raznoe/mac','',4,6,0,0,'');");
+											$mysqli->query("INSERT INTO `".$t_."products` VALUES (1,2,'Brot','baeckerei/brot','',55,0,1,0,'1286910894_bulochka.jpg'),(2,1,'Pflanzenöl','pflanzenoel','',50,5,1,0,''),(3,15,'Käse','kaese','Käse',50,0,1,0,''),(4,3.5,'Quark','quark','',50,5,0,0,''),(5,5,'Sauerrahm','sauerrahm','',52,5,0,0,''),(6,2,'Salz','salz','',50,0,0,0,''),(7,2.5,'Zucker','zucker','',712,0,0,0,''),(8,1,'Torte','torte','',50,0,0,0,''),(9,0.5,'Milch','milch','',50,5,0,0,''),(10,5,'Krabben','krabben','',50,0,0,0,''),(12,1.5,'Lebkuchen','lebkuchen','',50,6,0,0,''),(13,3,'Fisch','fleisch-und-milchprodukte/fleisch/fisch','',50,4,0,0,'1286910894_bulochka.jpg'),(14,0.5,'Orbit','verschiedenes/orbit','Bubble Gum',25,0,0,0,''),(15,4,'Pflaumen','pflaumen','',50,6,0,0,''),(16,4,'Teig','teig','',20,0,0,0,''),(33,1.5,'Tschernigow Bier','getraenke/tschernigowbier','',0,0,0,0,'1286910894_bulochka.jpg'),(37,3,'Apfelsaft','getraenke/saefte/apfelsaft','',53,14,0,0,''),(23,2,'Kwass','fleisch-und-milchprodukte/fleisch/kwass','',3,0,0,0,''),(38,3,'Brinza','getraenke/brinza','',5,6,0,0,''),(39,5,'Traubensaft','getraenke/saft/traubensaft','',5,14,0,0,''),(40,7,'Mohn','getraenke/mohn','',4,6,0,0,'');");
 										}
 										
 										if ($t=='profile')
@@ -341,12 +341,12 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 										
 										if ($t=='statuses')
 										{
-											$mysqli->query("INSERT INTO `".$t_."statuses` VALUES (1,'в ожидании'),(2,'готов'),(3,'завершен');");
+											$mysqli->query("INSERT INTO `".$t_."statuses` VALUES (1,'gewärtig'),(2,'bereit'),(3,'fertiggestellt');");
 										}
 										
 										if ($t=='suppliers')
 										{
-											$mysqli->query("INSERT INTO `".$t_."suppliers` VALUES (1,'Поставщик','supplier','Поставщик такой-то');");
+											$mysqli->query("INSERT INTO `".$t_."suppliers` VALUES (1,'Lieferant','supplier','Lieferant Art.');");
 										}
 										
 										if ($t=='users')
@@ -358,23 +358,22 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 									
 								}
 								
-								// Админские установки
+								// admin data
 								$login = (isset($_POST['login'])) ? trim($_POST['login']) : 0;
 								$email = (isset($_POST['email'])) ? trim($_POST['email']) : 0;
 								$pass = (isset($_POST['password'])) ? trim($_POST['password']) : 0;
 								$pass_c = (isset($_POST['password_confirm'])) ? trim($_POST['password_confirm']) : 0;
 														
-								// Если Таблицы успешно установились, особенно
-								// users и все что с ними связано
+								// if the tables is ready (users)
 								if ($login && $email && $pass && ($pass==$pass_c))
 								{
 									$password = hash_hmac('sha256', $pass, 'lk6819lkasjdlkjaw912udkajshd');
-									// Занесем амдина в базу даных
+									
 									$mysqli->query("INSERT INTO ".$t_."users(username,email,password,accepted,confirmed,code) VALUES('".$login."','".$email."','".$password."',1,1,1)");
 									
 									if ($mysqli->insert_id)
 									{
-										// Установим роль этому пользователю
+										// Role
 										$id = $mysqli->insert_id;
 										$mysqli->query("INSERT INTO `".$t_."roles_users` VALUES (".$id.",1),(".$id.",2)");
 									}
@@ -382,7 +381,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 																
 								$dresult = $mysqli->query("SHOW TABLES LIKE '".$t_."users'");
 								
-								// Проверка на успешную установку
+								// Successful Install Check
 								if ($dresult->num_rows)
 								{								
 									$user_result = $mysqli->query("SELECT * FROM ".$t_."users");
@@ -394,7 +393,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 									
 									if (!empty($data))
 									{
-										echo '<p id="install" class="pass">Компакт Шоп Был Установлен, удалите файл install.php</p>';
+										echo '<p id="install" class="pass">CompactShop erfolgreich installiert wurde, löschen Sie die Datei install.php</p>';
 									}
 									else
 									{
@@ -420,37 +419,37 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 	<form method="post" action="">
 	<table>
 		<tr>
-			<td>Создайте логин амдина</td><td><input type="text" value="" name="login" /></td>
+			<td>Erstellen Sie einen Login Admin</td><td><input type="text" value="" name="login" /></td>
 		</tr>
 		<tr>
-			<td>Введите email амдина</td><td><input type="text" value="" name="email" /></td>
+			<td>Geben Sie E-Mail-Admin</td><td><input type="text" value="" name="email" /></td>
 		</tr>
 		<tr>
-			<td>ваш пароль</td><td><input type="password" value="" name="password" /></td>
+			<td>Ihr Passwort</td><td><input type="password" value="" name="password" /></td>
 		</tr>
 		<tr>
-			<td>повторите пароль</td><td><input type="password" value="" name="password_confirm" /></td>
+			<td>Passwort bestätigen</td><td><input type="password" value="" name="password_confirm" /></td>
 		</tr>
 		<tr>
-			<th>Установки</th><th>Подключения к базе данных</th>
+			<th>Aufstellung</th><th>Verbindung mit der Datenbank</th>
 		</tr>
 		<tr>
-			<td>Имя БД</td><td><input type="text" value="" name="db_name" /></td>
+			<td>Name der Datenbnak</td><td><input type="text" value="" name="db_name" /></td>
 		</tr>
 		<tr>
-			<td>Префикс Таблиц</td><td><input type="text" value="" name="prefix" /></td>
+			<td>Tabelle Präfix</td><td><input type="text" value="" name="prefix" /></td>
 		</tr>
 		<tr>
-			<td>Сервер MySQL</td><td><input type="text" value="" name="db_host" /></td>
+			<td>MySQL-Server</td><td><input type="text" value="" name="db_host" /></td>
 		</tr>
 		<tr>
-			<td>Имя пользователя</td><td><input type="text" value="" name="db_user" /></td>
+			<td>Benutzername</td><td><input type="text" value="" name="db_user" /></td>
 		</tr>
 		<tr>
-			<td>пароль</td><td><input type="text" value="" name="db_pass" /></td>
+			<td>Passwort</td><td><input type="text" value="" name="db_pass" /></td>
 		</tr>
 		<tr>
-			<td></td><td><input type="submit" value="Установить" name="setup" /></td>
+			<td></td><td><input type="submit" value="Installieren" name="setup" /></td>
 		</tr>
 	</table>
 	</form>

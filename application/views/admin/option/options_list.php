@@ -1,13 +1,13 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Опции</a>
+    <a class="brand" href="#">Optionen</a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
 <tr>
-<th>Имя Опции</th>
-<th>Значение</th>
-<th>Алиас</th>
+<th>Nennen Sie Optionen</th>
+<th>Bedeutung</th>
+<th>Alias</th>
 <th></th>
 </tr>
 <?php foreach ($options as $option):?>
