@@ -2,7 +2,7 @@
 CompactShop
 ---
 ### Installation
-Testeingang für den Benutzer:
+User Test:
 - prostouser
 - testtest
 
