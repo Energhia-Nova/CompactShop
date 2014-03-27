@@ -1,15 +1,12 @@
+![CompactShop](https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash3/t1.0-1/p160x160/14570_1403882579880650_207752429_a.png "CompactShop")
 CompactShop
-===========
-
-Compact Shop CMS based on a Kohana Framework 3.3
-
-Gruppe VKontakte http://vk.com/CompactShopCMS
-
-- [Seite Beispiel](http://energhia-nova.github.io/CompactShop/)
-- [Admin Beispiel](http://energhia-nova.github.io/CompactShop/admin)
-
+---
 ### Installation
-
 Testeingang für den Benutzer:
 - prostouser
 - testtest
+
+### Support
+ [Netz Gruppe in vk.com](http://vk.com/CompactShopCMS) -
+ [Facebook CompactShop](https://www.facebook.com/CompactShop)
+
