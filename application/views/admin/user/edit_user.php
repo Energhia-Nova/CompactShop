@@ -1,7 +1,7 @@
 <form action="" method="post" id="product">
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Benutzer</a>
+    <a class="brand" href="#"><?=__('User')?></a>
   </div>
 </div>
 <table class="tnewuser" border="0">

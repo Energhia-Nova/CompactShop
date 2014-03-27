@@ -1,16 +1,16 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Produkte</a>
+    <a class="brand" href="#"><?=__('Products')?></a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
 <tr>
 <th>#</th>
 <th>Name</th>
-<th>Markenname</th>
-<th>Lieferant</th>
-<th>Anzahl</th>
-<th>Preis</th>
+<th><?=__('Brand')?></th>
+<th><?=__('Supplier')?></th>
+<th><?=__('amount')?></th>
+<th><?=__('price')?></th>
 </tr>
 <?php $i=1; foreach ($products as $product):?>
 <tr>

@@ -17,7 +17,7 @@ class Controller_Signup extends Controller_Base {
 				$user = ORM::factory('user')->create_user($post, array('username','email','password','accepted','code'));
 				$user->add('roles',ORM::factory('role',array('name'=>'login')));
 				
-				mail($post['email'],'Magazin. Registration','Для регистрации на сайте Магазина перейдите по следующей ссылке и введите код активации \r\n Ссылка для регистрации http://magazin.test/sign-up/confirm/'.$post['accepted']. ' \r\n Код активации: '.$post['code']);
+				mail($post['email'],'Magazin. Registration','For the registration on the site [Site]  go by the next link set the activation code \r\n Registration Link: http://magazin.test/sign-up/confirm/'.$post['accepted']. ' \r\n Activation Code: '.$post['code']);
 				
 				$this->redirect('/sign-up/confirm/'.$post['accepted']);
 			}

@@ -1,10 +1,10 @@
 <div id='form'>
-	<h2 style='padding: 10px'>Bestellungen</h2>
-	<p style='padding-left: 10px;'>Inhaltsverzeichnis.</p>
+	<h2 style='padding: 10px'><?=__('Orders')?></h2>
+	<p style='padding-left: 10px;'><?=__('Orders list.')?></p>
 	
 	<div id="orders_done"><br />
 		<table border="1" class="orders_done">
-			<tr><th>Bestellnummer</th><th>Status</th><th>Gesamtbetrag</th></tr>
+			<tr><th>№</th><th>Status</th><th><?=__('total')?></th></tr>
 			<?php foreach ($orders as $order):?>
 				<tr><td><?=$order->id?></td><td><?=$order->status->name?></td><td><?=$order->total_price()?> EUR.</td></tr>
 			<?php endforeach; ?>

@@ -1,12 +1,12 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Optionen</a>
+    <a class="brand" href="#"><?=__('Options')?></a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
 <tr>
-<th>Nennen Sie Optionen</th>
-<th>Bedeutung</th>
+<th>Name</th>
+<th><?=__('Value')?></th>
 <th>Alias</th>
 <th></th>
 </tr>

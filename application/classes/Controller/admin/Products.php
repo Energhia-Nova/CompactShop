@@ -37,7 +37,6 @@ class Controller_Admin_Products extends Controller_Admin_Admin {
 			
 			$product->save();
 			
-			// Wird das Produkt korrekt gespeichert sind, benötigen eine Umleitung auf seine bearbeiten
 			if ($product->id)
 			{
 				$this->request->redirect('admin/products/edit-product/'.$product->id);

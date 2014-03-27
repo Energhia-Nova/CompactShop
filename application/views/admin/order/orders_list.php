@@ -1,6 +1,6 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Bestellungen</a>
+    <a class="brand" href="#"><?=__('Orders')?></a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
@@ -8,7 +8,7 @@
 <th>№</th>
 <th>Autor</th>
 <th>Status</th>
-<th>Summa</th>
+<th><?=__('total')?></th>
 </tr>
 <?php foreach ($orders as $order):?>
 <tr>

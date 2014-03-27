@@ -1,4 +1,4 @@
 <ul class="nav nav-tabs nav-stacked">
-	<li><a href="/admin/suppliers">Lieferantenliste</a></li>
-    <li><a href="/admin/suppliers/new-supplier">Lieferant hinzufügen</a></li>    
+	<li><a href="/admin/suppliers"><?=__('Suppliers')?></a></li>
+    <li><a href="/admin/suppliers/new-supplier"><?=__('add Supplier')?></a></li>    
 </ul>

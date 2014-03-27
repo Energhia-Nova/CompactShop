@@ -21,7 +21,7 @@ else
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Kohana Installation</title>
+	<title>CompactShop Installation</title>
 
 	<style type="text/css">
 	body { width: 42em; margin: 0 auto; font-family: sans-serif; background: #fff; font-size: 1em; }
@@ -103,6 +103,13 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;',
+
+'languages'=> 'CREATE TABLE IF NOT EXISTS `'.$t_.'languages` (
+		`id` int(10) NOT NULL AUTO_INCREMENT,
+		`name` varchar(128) NOT NULL,
+		`on` tinyint(1) DEFAULT NULL,
+		PRIMARY KEY (`id`)
+	) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8',
 
 										'menu_items'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'menu_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -267,7 +274,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 																
 								if (!empty($data))
 								{
-									echo '<p id="install" class="pass">CompactShop erfolgreich installiert wurde, löschen Sie die Datei install.php</p>';
+									echo '<p id="install" class="pass">CompactShop was successfully installed! <br />Remove or rename <code>install.php</code> file</p>';
 								}
 							}
 							else
@@ -291,22 +298,27 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 										
 										if ($t=='pages')
 										{											
-											$mysqli->query("INSERT INTO `".$t_."pages` VALUES (1,'Face.','face',0,'Eingang.'),(2,'Orders.','orders',0,'Bestellungen.'),(3,'Archive.','archive',0,'Archiv.'),(4,'Profile.','profile',0,'Profil.'),(5,'Contact.','contact',0,'Kontakt.'),(6,'Projects.','projects',0,'Projekte.'),(7,'Follow.','follow',0,'Sozial Netz.'),(8,'Sign Up.','sign-up',0,'Registrierung'),(9,'Artwork','artwork',6,'Art.'),(10,'Page. The Magazin','magazin',6,'Seite. Geschäft'),(11,'Twitter.','twitter',7,'Twitter.'),(12,'Facebook.','facebook',7,'Facebook.'),(13,'Behance.','behance',7,'Bechans.');");
+											$mysqli->query("INSERT INTO `".$t_."pages` VALUES (1,'Face.','face',0,'Login.'),(2,'Orders.','orders',0,'Orders.'),(3,'Archive.','archive',0,'Archive.'),(4,'Profile.','profile',0,'Profile.'),(5,'Contact.','contact',0,'Contact.'),(6,'Projects.','projects',0,'Projects.'),(7,'Follow.','follow',0,'Social Nets.'),(8,'Sign Up.','sign-up',0,'Registration'),(9,'Artwork','artwork',6,'Art.'),(10,'Page. The Store','magazin',6,'Store.'),(11,'Twitter.','twitter',7,'Twitter.'),(12,'Facebook.','facebook',7,'Facebook.'),(13,'Behance.','behance',7,'Behance.');");
+										}
+										
+										if ($t=='languages')
+										{
+											$mysqli->query("INSERT INTO `".$t_."languages` VALUES (1,'english',1), (2,'deutsch',0);");
 										}
 										
 										if ($t=='brands')
 										{											
-											$mysqli->query("INSERT INTO `".$t_."brands` VALUES  (1,'apple','Apple','Beschreibung'),(2,'brand-two','Brand','Brand Two');");
+											$mysqli->query("INSERT INTO `".$t_."brands` VALUES  (1,'apple','Apple','Description'),(2,'brand-two','Brand','Brand Two');");
 										}
 										
 										if ($t=='menu_items')
 										{
-											$mysqli->query("INSERT INTO `".$t_."menu_items` VALUES (1,0,'fleisch-und-milchprodukte','Fleisch-und Milchprodukte','',1),(3,0,'baeckerei','Bäckerei','',2),(4,1,'fleisch-und -milchprodukte/fleisch','Fleisch','',2),(5,1,'fleisch-und-milchprodukte/molkerei','Molkerei','',1),(6,0,'verschiedenes','Verschiedenes','',4),(7,0,'getraenke','Getränke','',3),(9,7,'getraenke/cola','Cola (Mineralwasser)','',0),(10,7,'getraenke/alcohol','Alkohol','',0),(13,7,'getraenke/tees','Tees','',0),(14,7,'getraenke/saefte','Säfte','',0),(15,10,'getraenke/alcohol/wine','Wein','',0);");
+											$mysqli->query("INSERT INTO `".$t_."menu_items` VALUES (1,0,'meat-and-dairy','meat and dairy','',1),(3,0,'bakery','Bakery','',2),(4,1,'meat-and-dairy/meat','Meat','',2),(5,1,'meat-and-dairy/milky','Milky','',1),(6,0,'other','other','',4),(7,0,'drinks','Drinks','',3),(9,7,'drinks/cola','Cola (Mineral Water)','',0),(10,7,'drinks/alcohol','Alkohol','',0),(13,7,'drinks/teas','Teas','',0),(14,7,'drinks/juices','Juice','',0),(15,10,'drinks/alcohol/wine','Wine','',0);");
 										}
 										
 										if ($t=='options')
 										{
-											$mysqli->query("INSERT INTO `".$t_."options` VALUES (1,'Geschäft Name','magazin-name','Geschäft');");
+											$mysqli->query("INSERT INTO `".$t_."options` VALUES (1,'Store  Name','magazin-name','Store');");
 										}
 										
 										if ($t=='orders')
@@ -316,7 +328,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 										
 										if ($t=='products')
 										{
-											$mysqli->query("INSERT INTO `".$t_."products` VALUES (1,2,'Brot','baeckerei/brot','',55,0,1,0,'1286910894_bulochka.jpg'),(2,1,'Pflanzenöl','pflanzenoel','',50,5,1,0,''),(3,15,'Käse','kaese','Käse',50,0,1,0,''),(4,3.5,'Quark','quark','',50,5,0,0,''),(5,5,'Sauerrahm','sauerrahm','',52,5,0,0,''),(6,2,'Salz','salz','',50,0,0,0,''),(7,2.5,'Zucker','zucker','',712,0,0,0,''),(8,1,'Torte','torte','',50,0,0,0,''),(9,0.5,'Milch','milch','',50,5,0,0,''),(10,5,'Krabben','krabben','',50,0,0,0,''),(12,1.5,'Lebkuchen','lebkuchen','',50,6,0,0,''),(13,3,'Fisch','fleisch-und-milchprodukte/fleisch/fisch','',50,4,0,0,'1286910894_bulochka.jpg'),(14,0.5,'Orbit','verschiedenes/orbit','Bubble Gum',25,0,0,0,''),(15,4,'Pflaumen','pflaumen','',50,6,0,0,''),(16,4,'Teig','teig','',20,0,0,0,''),(33,1.5,'Tschernigow Bier','getraenke/tschernigowbier','',0,0,0,0,'1286910894_bulochka.jpg'),(37,3,'Apfelsaft','getraenke/saefte/apfelsaft','',53,14,0,0,''),(23,2,'Kwass','fleisch-und-milchprodukte/fleisch/kwass','',3,0,0,0,''),(38,3,'Brinza','getraenke/brinza','',5,6,0,0,''),(39,5,'Traubensaft','getraenke/saft/traubensaft','',5,14,0,0,''),(40,7,'Mohn','getraenke/mohn','',4,6,0,0,'');");
+											$mysqli->query("INSERT INTO `".$t_."products` VALUES (1,2,'Bread','bakery/bread','',55,0,1,0,'1286910894_bulochka.jpg'),(2,1,'oil','oil','',50,5,1,0,''),(3,15,'cream','cream','Soure cream',50,0,1,0,''),(4,3.5,'curd','curd','',50,5,0,0,''),(5,5,'Cake','cake','',52,5,0,0,''),(6,2,'Salt','salt','',50,0,0,0,''),(7,2.5,'Sugar','sugar','',712,0,0,0,''),(8,1,'Chicken','chicken','',50,0,0,0,''),(9,0.5,'Milk','milk','',50,5,0,0,''),(10,5,'Crabs','crabs','',50,0,0,0,''),(12,1.5,'Rise','Rise','',50,6,0,0,''),(13,3,'Fish','meat-and-dairy/meat/fish','',50,4,0,0,'1286910894_bulochka.jpg'),(14,0.5,'Orbit','other/orbit','Bubble Gum',25,0,0,0,''),(15,4,'Plums','plums','',50,6,0,0,''),(16,4,'Dough','dough','',20,0,0,0,''),(33,1.5,'Tschernigow Beer','drinks/tschernigowbeer','',0,0,0,0,'1286910894_bulochka.jpg'),(37,3,'Apple Juice','drinks/juice/applejuice','',53,14,0,0,''),(23,2,'Kwass','meat-and-dairy/meat/kwass','',3,0,0,0,''),(38,3,'Brinza','drinks/brinza','',5,6,0,0,''),(39,5,'Grape Juice','drinks/juice/grapejuice','',5,14,0,0,''),(40,7,'Poppy','drinks/poppy','',4,6,0,0,'');");
 										}
 										
 										if ($t=='profile')
@@ -341,12 +353,12 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 										
 										if ($t=='statuses')
 										{
-											$mysqli->query("INSERT INTO `".$t_."statuses` VALUES (1,'gewärtig'),(2,'bereit'),(3,'fertiggestellt');");
+											$mysqli->query("INSERT INTO `".$t_."statuses` VALUES (1,'wait'),(2,'ready'),(3,'done');");
 										}
 										
 										if ($t=='suppliers')
 										{
-											$mysqli->query("INSERT INTO `".$t_."suppliers` VALUES (1,'Lieferant','supplier','Lieferant Art.');");
+											$mysqli->query("INSERT INTO `".$t_."suppliers` VALUES (1,'Supplier','supplier','Supplier  Art.');");
 										}
 										
 										if ($t=='users')
@@ -393,7 +405,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 									
 									if (!empty($data))
 									{
-										echo '<p id="install" class="pass">CompactShop erfolgreich installiert wurde, löschen Sie die Datei install.php</p>';
+										echo '<p id="install" class="pass">CompactShop was successfully installed! <br />Remove or rename <code>install.php</code> file</p>';
 									}
 									else
 									{
@@ -419,37 +431,37 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 	<form method="post" action="">
 	<table>
 		<tr>
-			<td>Erstellen Sie einen Login Admin</td><td><input type="text" value="" name="login" /></td>
+			<td>Set the admin login</td><td><input type="text" value="" name="login" /></td>
 		</tr>
 		<tr>
-			<td>Geben Sie E-Mail-Admin</td><td><input type="text" value="" name="email" /></td>
+			<td>Set the admin email</td><td><input type="text" value="" name="email" /></td>
 		</tr>
 		<tr>
-			<td>Ihr Passwort</td><td><input type="password" value="" name="password" /></td>
+			<td>password</td><td><input type="password" value="" name="password" /></td>
 		</tr>
 		<tr>
-			<td>Passwort bestätigen</td><td><input type="password" value="" name="password_confirm" /></td>
+			<td>repeat password</td><td><input type="password" value="" name="password_confirm" /></td>
 		</tr>
 		<tr>
-			<th>Aufstellung</th><th>Verbindung mit der Datenbank</th>
+			<th>Settings</th><th>Database Configuration</th>
 		</tr>
 		<tr>
-			<td>Name der Datenbnak</td><td><input type="text" value="" name="db_name" /></td>
+			<td>Database Name</td><td><input type="text" value="" name="db_name" /></td>
 		</tr>
 		<tr>
-			<td>Tabelle Präfix</td><td><input type="text" value="" name="prefix" /></td>
+			<td>Tables Prefix</td><td><input type="text" value="" name="prefix" /></td>
 		</tr>
 		<tr>
 			<td>MySQL-Server</td><td><input type="text" value="" name="db_host" /></td>
 		</tr>
 		<tr>
-			<td>Benutzername</td><td><input type="text" value="" name="db_user" /></td>
+			<td>Database User</td><td><input type="text" value="" name="db_user" /></td>
 		</tr>
 		<tr>
-			<td>Passwort</td><td><input type="text" value="" name="db_pass" /></td>
+			<td>Password</td><td><input type="text" value="" name="db_pass" /></td>
 		</tr>
 		<tr>
-			<td></td><td><input type="submit" value="Installieren" name="setup" /></td>
+			<td></td><td><input type="submit" value="Install" name="setup" /></td>
 		</tr>
 	</table>
 	</form>

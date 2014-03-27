@@ -1,13 +1,13 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Lieferanten</a>
+    <a class="brand" href="#"><?=__('Suppliers')?></a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
 <tr>
 <th>Name</th>
 <th>Alias</th>
-<th>Beschreibung</th>
+<th><?=__('Description')?></th>
 <th></th>
 </tr>
 <?php foreach ($suppliers as $supplier):?>

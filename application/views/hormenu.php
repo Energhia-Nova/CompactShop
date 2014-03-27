@@ -1,16 +1,16 @@
 <div class="nav">
-	<div class="icon"><a href="/" style="font-size: 20px; font-family: Verdana; color: white; font-weight: bold; text-shadow: 1px 1px 3px grey;">Geschäft</a></div>
+	<div class="icon"><a href="/" style="font-size: 20px; font-family: Verdana; color: white; font-weight: bold; text-shadow: 1px 1px 3px grey;"><?=__('Store')?></a></div>
 	<?php foreach($pages as $iter=>$page):?>
 		<div class="nav_menu">
 			<?php if (!array_key_exists('items',$page)) { 
 					
 					if ($page['alias']=='face' and Auth::instance()->logged_in())
-						echo '<p class="bold link"><a href="/exit">Beenden.</a></p>';
+						echo '<p class="bold link"><a href="/exit">'.__('Exit.').'</a></p>';
 					else
 					{
 						if ($page['alias']=='sign-up' and Auth::instance()->logged_in())
 						{
-							echo '<p class="bold link"><a href="#" id="total_price">'.$total_price.'</a> EUR.</p> <a href="/order" class="R" title="Bestellungen werden gefüllt.">R</a>';
+							echo '<p class="bold link"><a href="#" id="total_price">'.$total_price.'</a> EUR.</p> <a href="/order" class="R" title="'.__('Filled Up').'">R</a>';
 						}
 						else 
 						    echo '<p class="bold link"><a href="/'.$page['alias'].'">'.$page['ru_name'].'</a></p>';	

@@ -1,13 +1,13 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Bestellung № <span class="ordid"><?=$order->id?></span> aus <?=$order->user->username?></a>
+    <a class="brand" href="#"><?=__('Order')?> № <span class="ordid"><?=$order->id?></span> <?=__('from')?> <?=$order->user->username?></a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
 <tr>
-<th>Produkt</th>
-<th>Anzahl</th>
-<th>Preis</th>
+<th><?=__('Product')?></th>
+<th><?=__('amount')?></th>
+<th><?=__('price')?></th>
 </tr>
 <?php foreach ($order->purchases->find_all() as $purchase):?>
 <tr>

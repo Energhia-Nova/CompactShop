@@ -8,6 +8,8 @@ abstract Class Controller_Base extends Controller_Template {
     {
         parent::before();
 		
+		I18n::lang('en');
+		
 		if (!Auth::instance()->logged_in())
 		{
 			$purchases = array(); 
@@ -17,7 +19,6 @@ abstract Class Controller_Base extends Controller_Template {
 		{
 			$cart = ORM::factory('cart');
 			$purchases = $cart->where('user_id','=',Auth::instance()->get_user()->id)->find_all();
-			/* Hier müssen wir den Preis für alle Artikel im Warenkorb berechnen */
 			$total_price = 0;
 			foreach ($purchases as $p)
 			{

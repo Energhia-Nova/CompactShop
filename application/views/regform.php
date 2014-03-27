@@ -2,26 +2,26 @@
 	<form action="" name="registration" method="post">
 		<table border="1">
 			<tr>
-				<td align="right" style="text-align:right">Anmelden</td>
+				<td align="right" style="text-align:right"><?=__('Login')?></td>
 				<td align="left" style="text-align:left"><input type="text" value="" name="login" /></td>
 			</tr>
 			<tr>
-				<td align="right" style="text-align:right">Ihre E-Mail</td>
+				<td align="right" style="text-align:right"><?=__('Email')?></td>
 				<td align="left" style="text-align:left"><input type="text" value="" name="email" /></td>
 			</tr>
 			<tr>
-				<td align="right" style="text-align:right">Passwort</td>
+				<td align="right" style="text-align:right"><?=__('Password')?></td>
 				<td align="left" style="text-align:left"><input type="password" value="" name="password" /></td>
 			</tr>
 			<tr>
-				<td align="right" style="text-align:right">Kennwort wieder</td>
+				<td align="right" style="text-align:right"><?=__('Repeat password')?></td>
 				<td align="left" style="text-align:left"><input type="password" value="" name="password_confirm" /></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
 					<div class="success-data">
-						Nach <input type="submit" value="Bestätigung" name="submit" /> der Daten an die E-Mail <br /> und einen Code geschickt, um einzutreten
+						<?=__('After')?> <input type="submit" value="<?=__('confirmation')?>" name="submit" /> <?=__('you will recieve the link and code')?>
 					</div>
 				</td>
 			</tr>

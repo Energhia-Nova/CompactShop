@@ -1,13 +1,13 @@
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Marken</a>
+    <a class="brand" href="#"><?=__('Brands')?></a>
   </div>
 </div>
 <table class="tproducts table table-bordered table-striped table-hover">
 <tr>
 <th>Name</th>
 <th>Alias</th>
-<th>Beschreibung</th>
+<th><?=__('Description')?></th>
 <th></th>
 </tr>
 <?php foreach ($brands as $brand):?>

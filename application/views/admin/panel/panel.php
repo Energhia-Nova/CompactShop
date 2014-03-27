@@ -26,31 +26,31 @@
 <div id="menu">
 <ul id="nav">
     <li>
-        <a class="atem" href="/admin">Platte</a>
+        <a class="atem" href="/admin"><?=__('Panel')?></a>
     </li>
 	<li>
-        <a href="/admin/orders">Bestellungen</a>
+        <a href="/admin/orders"><?=__('Orders')?></a>
     </li>
     <li>
-        <a href="/admin/users">Benutzer</a>
+        <a href="/admin/users"><?=__('Users')?></a>
     </li>
     <li>
-        <a href="/admin/products">Produkte</a>
+        <a href="/admin/products"><?=__('Products')?></a>
     </li>
     <li>
-        <a href="/admin/categories">Kategorien</a>
+        <a href="/admin/categories"><?=__('Categories')?></a>
     </li>
     <li>
-        <a href="/admin/brands">Marken</a>
+        <a href="/admin/brands"><?=__('Brands')?></a>
     </li>
         <li>
-        <a href="/admin/suppliers">Lieferanten</a>
+        <a href="/admin/suppliers"><?=__('Suppliers')?></a>
     </li>
 	<li>
-        <a href="/admin/options">Optionen</a>
+        <a href="/admin/options"><?=__('Options')?></a>
     </li>
 </ul>
-<a style="float:right; margin-right: 5px; padding-top:1px;" href="/"><small>im</small> Geschäft</a>
+<a style="float:right; margin-right: 5px; padding-top:1px;" href="/"><small><?=__('in')?></small> <?=__('Store')?></a>
 </div>
 </div>
  <div id="leftsidebar">

@@ -1,7 +1,7 @@
 <form action="" method="post" id="product">
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Benutzer</a>
+    <a class="brand" href="#"><?=__('User')?></a>
   </div>
 </div>
 <table class="tnewuser" border="0">
@@ -12,6 +12,6 @@
 	<td>&nbsp; </td><td><input type="text" value="" name="email" /> Email</td>
 </tr>
 <tr>
-	<td>&nbsp;</td><td><input type="submit" value="hinzufügen" name="save" class="btn" /></td>
+	<td>&nbsp;</td><td><input type="submit" value="<?=__('add')?>" name="save" class="btn" /></td>
 </tr>
 </table>

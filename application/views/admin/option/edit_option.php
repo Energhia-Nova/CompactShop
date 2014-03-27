@@ -6,7 +6,7 @@
 </div>
 <table class="tnewproduct" border="0">
 <tr align="left" valign="middle">
-    <td width="90">Nennen Sie Optionen</td>
+    <td width="90">Name</td>
     <td><input type="text" value="<?php echo $option->name;?>" name="name" /></td>
 </tr>
 <tr align="left" valign="middle">
@@ -14,7 +14,7 @@
     <td><input type="text" value="<?php echo $option->alias;?>" name="alias" /></td>
 </tr>
 <tr align="left" valign="middle">
-    <td>Bedeutung</td>
+    <td><?=__('Value')?></td>
     <td><input type="text" value="<?php echo $option->value;?>" name="value" /></td>
 </tr>
 <tr align="right" valign="middle">

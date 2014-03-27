@@ -1,12 +1,12 @@
 <form action="" method="post" id="product" enctype="multipart/form-data">
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Produkt</a>
+    <a class="brand" href="#"><?=__('Product')?></a>
   </div>
 </div>
 <table class="tnewproduct" border="0">
 <tr align="left" valign="middle">
-    <td width="90">Produktname</td>
+    <td width="90">Name</td>
     <td><input type="text" value="" name="name" /></td>
 </tr>
 <tr align="left" valign="middle">
@@ -16,19 +16,19 @@
 	</td>
 </tr>
 <tr align="left" valign="middle">
-    <td>Menge auf Lager</td>
+    <td><?=__('Stock amount')?></td>
     <td>
         <input type="text" value="" name="stock" style="width: 30px;" />
-        <span style="float: right; margin-right: -14px;"> Kategorie <select name="category"><?php foreach($categories as $category) echo '<option value="'.$category->url.'" data-id="'.$category->id.'">'.$category->title.'</option>';?></select>  Preis: <input type="text" value="" name="price" style="width: 50px;" /></span>
+        <span style="float: right; margin-right: -14px;"> <?=__('Category')?><select name="category"><?php foreach($categories as $category) echo '<option value="'.$category->url.'" data-id="'.$category->id.'">'.$category->title.'</option>';?></select>  <?=__('Price:')?> <input type="text" value="" name="price" style="width: 50px;" /></span>
 		<input type="hidden" name="category_id" value="" />
     </td>
 </tr>
 <tr>
-	<td>Bild</td>
+	<td><?=__('Image')?></td>
 	<td><input type="file" name="picture" /></td>
 </tr>
 <tr align="left" valign="middle">
-    <td>Beschreibung</td>
+    <td><?=__('Description')?></td>
     <td>
     <!-- <textarea name="description" id="editor" rows="10" style="width: 100%;"></textarea>-->
     <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
@@ -72,7 +72,7 @@
 		  <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink"><i class="icon-link"></i></a>
 		    <div class="dropdown-menu input-append">
 			    <input class="span2" placeholder="URL" type="text" data-edit="createLink">
-			    <button class="btn" type="button">hinzufügen</button>
+			    <button class="btn" type="button"><?=__('add')?></button>
             </div>
       </div>
     </div> 
@@ -83,7 +83,7 @@
 </tr>
 <tr align="right" valign="middle">
     <td>&nbsp;</td>
-    <td align="right"><input type="submit" value="hinzufügen" name="add"  class="btn" style="float:right; width: 100px; padding: 6px; margin-right: -15px;" /></td>
+    <td align="right"><input type="submit" value="<?=__('add')?>" name="add"  class="btn" style="float:right; width: 100px; padding: 6px; margin-right: -15px;" /></td>
 </tr>
 </table>
 </form>

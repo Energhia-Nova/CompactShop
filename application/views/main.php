@@ -41,7 +41,7 @@
 					    }
 					?>
 				</ul>
-				 <?php if (empty($purchases)) echo '<h2 class="choosed">Ausgewählte Produkte</h2>'; ?>
+				 <?php if (empty($purchases)) echo '<h2 class="choosed">'.__('Selected Products').'</h2>'; ?>
 			</div>
 			<div id="sidebar" class="sidebar">
 				<?=$categories?>
