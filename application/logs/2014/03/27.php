@@ -16,3 +16,6 @@
 #6 C:\workspace\sites\mag\www\application\bootstrap.php(174): Kohana_ORM::factory('menu_item')
 #7 C:\workspace\sites\mag\www\index.php(102): require('C:\workspace\si...')
 #8 {main} in C:\workspace\sites\mag\www\modules\database\classes\Kohana\Database\MySQL.php:358
+2014-03-27 11:03:31 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ''Categories'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' ~ SYSPATH\i18n\de.php [ 72 ] in :
+2014-03-27 11:03:31 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :

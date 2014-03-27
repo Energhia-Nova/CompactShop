@@ -17,10 +17,6 @@ ul { margin: 0; padding: 0; }
 #content .container { margin: 15px 10px; }
 .pagecrform input, .pagecrform textarea { border: 2px solid lightskyblue; border-radius: 2px; background:#fff; }
 
-/*#leftsidebar #container { float: left; border-right: 2px solid; }*/
-/*#leftsidebar #container .theLine { float:left; width: 3px; }
-#leftsidebar #container .black-slide { display: block; height: 12px; background: #000; margin-top: 5px; }*/
-
 /* twitter */
 .navbar { width: 800px; margin-bottom: 10px; }
 

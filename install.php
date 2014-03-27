@@ -250,7 +250,6 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 					
 					$mysqli = new mysqli($db_host,$db_user,$db_pass,$db_name);
 																				
-					/* Überprüfen der Verbindung */
 					if ($mysqli->connect_errno)
 					{
 						printf("Verbindung fehlgeschlagen: %s\n",$mysqli->connect_errno);
@@ -258,11 +257,8 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 					}
 					else
 					{						
-						// Überprüfen Sie, ob die Tabelle nicht leer ist,
-						// und festgestellt, ob der Admin-Website
 						if ($presult = $mysqli->query("SHOW TABLES LIKE '".$t_."users'"))
 						{
-							// Bitte überprüfen Sie, ob es eine solche Tabelle alle Benutzer
 							if ($presult->num_rows)
 							{								
 								$user_result = $mysqli->query("SELECT * FROM ".$t_."users");

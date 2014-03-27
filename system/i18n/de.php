@@ -68,7 +68,7 @@ return array(
 	'Visitors today' => 'Besucher pro Tag',
 	'Panel' => 'Platte',
 	'Users'=>'Benutzer',
-	'Products' => 'Produkte'
+	'Products' => 'Produkte',
 	'Categories' => 'Kategorien',
 	'Brands' => 'Marken',
 	'Suppliers' => 'Lieferanten',
