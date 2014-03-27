@@ -138,6 +138,13 @@ Route::set('error', 'error/<action>(/<message>)', array('action' => '[0-9]++', '
         ->defaults(array(
                 'controller' => 'error',
 ));
+
+Route::set('lang','admin/language/<lang>')
+	->defaults(array(
+		'directory'=>'admin',
+		'controller'=>'language',
+		'action' => 'index'
+	));
  
 // admin order edition
 Route::set('ordedit','admin/order/edit/<id>')

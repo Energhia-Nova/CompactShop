@@ -11,10 +11,7 @@ abstract Class Controller_Base extends Controller_Template {
 		// Predefined language
 		$language = ORM::factory('Language')->where('on','=',1)->find();
 		
-		if ($language->name=='English' or $language->name=='english')
-		{
-			I18n::lang('en');
-		}
+		I18n::lang($language->short);
 		
 		if (!Auth::instance()->logged_in())
 		{

@@ -108,6 +108,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 		`id` int(10) NOT NULL AUTO_INCREMENT,
 		`name` varchar(128) NOT NULL,
 		`on` tinyint(1) DEFAULT NULL,
+		`short` varchar(128) NOT NULL,
 		PRIMARY KEY (`id`)
 	) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8',
 
@@ -299,7 +300,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 										
 										if ($t=='languages')
 										{
-											$mysqli->query("INSERT INTO `".$t_."languages` VALUES (1,'english',1), (2,'deutsch',0);");
+											$mysqli->query("INSERT INTO `".$t_."languages` VALUES (1,'english',1,'en'), (2,'deutsch',0,'de');");
 										}
 										
 										if ($t=='brands')
