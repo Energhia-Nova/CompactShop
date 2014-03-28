@@ -10,7 +10,7 @@
 					{
 						if ($page['alias']=='sign-up' and Auth::instance()->logged_in())
 						{
-							echo '<p class="bold link"><a href="#" id="total_price">'.$total_price.'</a> EUR.</p> <a href="/order" class="R" title="'.__('Filled Up').'">R</a>';
+							echo '<p class="bold link"><a href="#" id="total_price">'.$total_price.'</a> '.$currency.'</p> <a href="/order" class="R" title="'.__('Filled Up').'">R</a>';
 						}
 						else 
 						    echo '<p class="bold link"><a href="/'.$page['alias'].'">'.$page['ru_name'].'</a></p>';	

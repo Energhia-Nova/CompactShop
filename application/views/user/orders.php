@@ -6,7 +6,7 @@
 		<table border="1" class="orders_done">
 			<tr><th>№</th><th>Status</th><th><?=__('total')?></th></tr>
 			<?php foreach ($orders as $order):?>
-				<tr><td><?=$order->id?></td><td><?=$order->status->name?></td><td><?=$order->total_price()?> EUR.</td></tr>
+				<tr><td><?=$order->id?></td><td><?=$order->status->name?></td><td><?=$order->total_price()?> <?=$currency?></td></tr>
 			<?php endforeach; ?>
 		</table>
 	</div>

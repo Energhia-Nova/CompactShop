@@ -9,6 +9,12 @@ abstract Class Controller_Admin_Admin extends Controller_Template {
         parent::before();
 		
 		if (!Auth::instance()->logged_in("admin")) $this->redirect(URL::base(true));
+		
+		$language = ORM::factory('Language')->where('on','=',1)->find();
+		$country = ORM::factory('Country')->where('on','=',1)->find();
+		$currency = (!empty($country->currency)) ? $country->currency : '$';
+		View::set_global('currency',$currency);
+		I18n::lang($language->short);
                 
         $funcview = View::factory('admin/functional/'.$this->request->controller());
         $this->template->title = 'CompactShop CMS Admin';

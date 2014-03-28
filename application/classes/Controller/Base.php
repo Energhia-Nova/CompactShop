@@ -8,9 +8,10 @@ abstract Class Controller_Base extends Controller_Template {
     {
         parent::before();
 		
-		// Predefined language
 		$language = ORM::factory('Language')->where('on','=',1)->find();
-		
+		$country = ORM::factory('Country')->where('on','=',1)->find();
+		$currency = (!empty($country->currency)) ? $country->currency : '$';		
+		View::set_global('currency',$currency);
 		I18n::lang($language->short);
 		
 		if (!Auth::instance()->logged_in())

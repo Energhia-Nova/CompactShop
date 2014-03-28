@@ -112,3 +112,6 @@
 #5 C:\workspace\sites\mag\www\system\classes\Kohana\Request.php(990): Kohana_Request_Client->execute(Object(Request))
 #6 C:\workspace\sites\mag\www\index.php(118): Kohana_Request->execute()
 #7 {main} in C:\workspace\sites\mag\www\application\classes\Controller\admin\Language.php:24
+2014-03-27 15:45:35 --- CRITICAL: ErrorException [ 1 ]: Call to a member function send_headers() on a non-object ~ DOCROOT\index.php [ 119 ] in :
+2014-03-27 15:45:35 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in :

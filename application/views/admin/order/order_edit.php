@@ -13,7 +13,7 @@
 <tr>
 <td><?=$purchase->product->name?></td>
 <td><?=$purchase->amount?></td>
-<td><?=number_format(($purchase->product->price*$purchase->amount),2,'.','')?> EUR.</td>
+<td><?=number_format(($purchase->product->price*$purchase->amount),2,'.','')?> <?=$currency?></td>
 </tr>
 <?php endforeach; ?>
 <tr>
@@ -25,6 +25,6 @@
 			<?php endforeach; ?>
 		</select>	
 	</td>
-	<td><?=number_format($order->total_price(),2,'.','')?> EUR.</td>
+	<td><?=number_format($order->total_price(),2,'.','')?> <?=$currency?></td>
 </tr>
 </table>

@@ -19,7 +19,7 @@
 <td><?=$product->brand->name?></td>
 <td><?=$product->supplier->name?></td>
 <td><?=$product->stock?></td>
-<td><?=number_format($product->price,2,'.','')?> EUR.</td>
+<td><?=number_format($product->price,2,'.','')?> <?=$currency?></td>
 </tr>
 <?php endforeach; ?>
 </table>

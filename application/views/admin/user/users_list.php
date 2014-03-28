@@ -17,6 +17,6 @@
 <td><?=$user->email?></td>
 <td><?=__('Buyer')?></td>
 <td>2</td>
-<td>300 EUR.</th>
+<td>300 <?=$currency?></th>
 <?php endforeach; ?>
 </table>

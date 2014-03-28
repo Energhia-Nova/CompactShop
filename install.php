@@ -89,14 +89,17 @@ function write_ini_file($assoc_arr, $path, $has_sections=FALSE) {
 
 $t_ = (isset($_POST['prefix']) and !empty($_POST['prefix'])) ? trim($_POST['prefix']) : '';
 
-$tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
+$tables = array(
+
+'brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `alias` varchar(256) NOT NULL,
   `name` varchar(256) NOT NULL,
   `description` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'cart'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'cart` (
+
+'cart'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'cart` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
@@ -111,8 +114,16 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 		`short` varchar(128) NOT NULL,
 		PRIMARY KEY (`id`)
 	) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8',
+	
+'countries'=> 'CREATE TABLE IF NOT EXISTS `'.$t_.'countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `currency` varchar(2) NOT NULL,
+  `on` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=170 DEFAULT CHARSET=utf8;',
 
-										'menu_items'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'menu_items` (
+'menu_items'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'menu_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
@@ -122,20 +133,22 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16;',
 
-										'options'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'options` (
+'options'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'options` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(256) NOT NULL,
   `alias` varchar(256) NOT NULL,
   `value` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'orders'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'orders` (
+
+'orders'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `status_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;',
-										'pages'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'pages` (
+
+'pages'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
@@ -143,7 +156,8 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   `ru_name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;',
-										'products'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'products` (
+
+'products'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` float NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -156,7 +170,8 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   `image` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;',
-										'profile'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'profile` (
+
+'profile'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `age` int(11) NOT NULL,
@@ -165,21 +180,24 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;',
-										'purchases'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'purchases` (
+
+'purchases'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'purchases` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;',
-										'roles'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'roles` (
+
+'roles'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'roles` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   `description` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'roles_users'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'roles_users` (
+
+'roles_users'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'roles_users` (
   `user_id` int(10) unsigned NOT NULL,
   `role_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`),
@@ -187,19 +205,22 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;',
-										'statuses'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'statuses` (
+
+'statuses'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'statuses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;',
-										'suppliers'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'suppliers` (
+
+'suppliers'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'suppliers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `alias` varchar(128) NOT NULL,
   `description` varchar(1024) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
-										'user_tokens'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'user_tokens` (
+
+'user_tokens'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'user_tokens` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `user_agent` varchar(40) NOT NULL,
@@ -212,7 +233,8 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
   KEY `expires` (`expires`),
   CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;',
-										'users'=>"CREATE TABLE IF NOT EXISTS `".$t_."users` (
+
+'users'=>"CREATE TABLE IF NOT EXISTS `".$t_."users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(254) NOT NULL,
   `username` varchar(32) NOT NULL DEFAULT '',
@@ -303,6 +325,11 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 											$mysqli->query("INSERT INTO `".$t_."languages` VALUES (1,'english',1,'en'), (2,'deutsch',0,'de');");
 										}
 										
+										if ($t=='countries')
+										{
+											$mysqli->query("INSERT INTO `".$t_."countries` VALUES (1,'Afghanistan','',0),(2,'Albania','',0),(3,'Algeria','',0),(4,'Andorra','',0),(5,'Angola','',0),(6,'Anitgua and Barbuda','',0),(7,'Argentina','',0),(8,'Armenia','',0),(9,'Australia','',0),(10,'Azerbaijan','',0),(11,'Bahamas','',0),(12,'Bahrain','',0),(13,'Bangladesh','',0),(14,'Barbados','',0),(15,'Belarus','',0),(16,'Belize','',0),(17,'Benin','',0),(18,'Bhutan','',0),(19,'Bolivia','',0),(20,'Bosnia and Herzegovina','',0),(21,'Botswana','',0),(22,'Brazil','',0),(23,'Brunei','',0),(24,'Burkina Faso','',0),(25,'Burma','',0),(26,'Burundi','',0),(27,'Cambodia','',0),(28,'Cameroon','',0),(29,'Canada','',0),(30,'Cape Verde','',0),(31,'Central African Republic','',0),(32,'Chad','',0),(33,'Chile','',0),(34,'China','',0),(35,'Colombia','',0),(36,'Comoros','',0),(37,'Congo, Democratic Republic of the','',0),(38,'Congo, Repubblic of the','',0),(39,'Cook Islands','',0),(40,'Costa Rica','',0),(41,'Cote Divoire','',0),(42,'Cuba','',0),(43,'Djibouti','',0),(44,'Dominica','',0),(45,'Dominican Republic','',0),(46,'East Timor','',0),(47,'Ecuador','',0),(48,'Egypt','',0),(49,'El Salvador','',0),(50,'Equatorial Guinea','',0),(51,'Eritrea','',0),(52,'Ethiopia','',0),(53,'Fiji','',0),(54,'Gabon','',0),(55,'Gambi','',0),(56,'Georgia','',0),(57,'Ghana','',0),(58,'Grenada','',0),(59,'Guatemala','',0),(60,'Guinea','',0),(61,'Guinea-Bissau','',0),(62,'Guyana','',0),(63,'Haiti','',0),(64,'Honduras','',0),(65,'Iceland','',0),(66,'India','',0),(67,'Indonesia','',0),(68,'Iran','',0),(69,'Israel','',0),(70,'Ivory Coast','',0),(71,'Jamaica','',0),(72,'Japan','',0),(73,'Jordan','',0),(74,'Kazakhstan','',0),(75,'Kenya','',0),(76,'Kiribati','',0),(77,'Korea, North','',0),(78,'Korea, South','',0),(79,'Kuwait','',0),(80,'Kyrgyzstan','',0),(81,'Laos','',0),(82,'Lebanon','',0),(83,'Lesotho','',0),(84,'Liberia','',0),(85,'Libya','',0),(86,'Liechtenstein','',0),(87,'Macedonia','',0),(88,'Madagascar','',0),(89,'Malawi','',0),(90,'Malaysia','',0),(91,'Maldives','',0),(92,'Mali','',0),(93,'Marshall Islands','',0),(94,'Mauritania','',0),(95,'Mauritius','',0),(96,'Mexico','',0),(97,'Micronesia, Federal States of','',0),(98,'Moldova','',0),(99,'Monaco','',0),(100,'Mongolia','',0),(101,'Montenegro','',0),(102,'Morocco','',0),(103,'Mozambique','',0),(104,'Myanmar','',0),(105,'Nagorno-Karabakh','',0),(106,'Namibia','',0),(107,'Nauru','',0),(108,'Nepal','',0),(109,'New Zealand','',0),(110,'Nicaragua','',0),(111,'Niger','',0),(112,'Nigeria','',0),(113,'Norway','',0),(114,'Oman','',0),(115,'Pakistan','',0),(116,'Palestine','',0),(117,'Panama','',0),(118,'Papua New Guinea','',0),(119,'Paraguay','',0),(120,'Peru','',0),(121,'Philippines','',0),(122,'Qatar','',0),(123,'Russia','',0),(124,'Rwanda','',0),(125,'Saint Kitts and Nevis','',0),(126,'Saint Lucia','',0),(127,'Saint Vincent and the Grenadines','',0),(128,'Samoa','',0),(129,'San Marino','',0),(130,'Sao Tome and Principe','',0),(131,'Saudi Arabia','',0),(132,'Senegal','',0),(133,'Serbia','',0),(134,'Seychelles','',0),(135,'Sierra Leone','',0),(136,'Singapore','',0),(137,'Solomon Islands','',0),(138,'Somalia','',0),(139,'South Africa','',0),(140,'South Sudan','',0),(141,'Sri Lanka','',0),(142,'Sudan','',0),(143,'Suriname','',0),(144,'Swaziland','',0),(145,'Switzerland','',0),(146,'Syria','',0),(147,'Tajikistan','',0),(148,'Tanzania','',0),(149,'Thailand','',0),(150,'Togo','',0),(151,'Tonga','',0),(152,'Trinidad and Tobago','',0),(153,'Tunisia','',0),(154,'Turkey','',0),(155,'Turkmenistand','',0),(156,'Tuvalu','',0),(157,'Uganda','',0),(158,'United Arab Emirates','',0),(159,'European Union','€',1),(160,'United States of America','$',0),(161,'Uruguay','',0),(162,'Uzbekistan','',0),(163,'Vanuatu','',0),(164,'Vatican City','',0),(165,'Venezuela','',0),(166,'Vietnam','',0),(167,'Yemen','',0),(168,'Zambia','',0),(169,'Zimbabwe','',0);");
+										}
+										
 										if ($t=='brands')
 										{											
 											$mysqli->query("INSERT INTO `".$t_."brands` VALUES  (1,'apple','Apple','Description'),(2,'brand-two','Brand','Brand Two');");
@@ -372,6 +399,21 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 								$email = (isset($_POST['email'])) ? trim($_POST['email']) : 0;
 								$pass = (isset($_POST['password'])) ? trim($_POST['password']) : 0;
 								$pass_c = (isset($_POST['password_confirm'])) ? trim($_POST['password_confirm']) : 0;
+								
+								$country = (isset($_POST['country'])) ? trim($_POST['country']) : '';
+								
+								if (!empty($country))
+								{
+									$mysqli->query("UPDATE ".$t_."countries SET `on`=0");
+									
+									if ($result = $mysqli->prepare("UPDATE ".$t_."countries SET `on`=1 WHERE name=?"))
+									{
+										$result->bind_param("s",$country);
+										$result->execute();
+										$result->close();
+									}
+									
+								}
 														
 								// if the tables is ready (users)
 								if ($login && $email && $pass && ($pass==$pass_c))
@@ -418,7 +460,7 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 			}
 		}
 	}
-
+	
 ?>
 
 <?php if (isset($_SESSION['ok']) and !empty($_SESSION['ok'])) echo $_SESSION['ok']; ?>
@@ -427,6 +469,182 @@ $tables = array('brands'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'brands` (
 	
 	<form method="post" action="">
 	<table>
+		<tr>
+			<td>Select a country</td>
+			<td>				
+				<select name="country" style="width: 155px; margin-left: 1px;">
+					<option>European Union</option>
+					<option>United States of America</option>
+					<option>Afghanistan</option>
+					<option>Albania</option>
+					<option>Algeria</option>
+					<option>Andorra</option>
+					<option>Angola</option>
+					<option>Anitgua and Barbuda</option>
+					<option>Argentina</option>
+					<option>Armenia</option>
+					<option>Australia</option>
+					<option>Azerbaijan</option>
+					<option>Bahamas</option>
+					<option>Bahrain</option>
+					<option>Bangladesh</option>
+					<option>Barbados</option>
+					<option>Belarus</option>
+					<option>Belize</option>
+					<option>Benin</option>
+					<option>Bhutan</option>
+					<option>Bolivia</option>
+					<option>Bosnia and Herzegovina</option>
+					<option>Botswana</option>
+					<option>Brazil</option>
+					<option>Brunei</option>
+					<option>Burkina Faso</option>
+					<option>Burma</option>
+					<option>Burundi</option>
+					<option>Cambodia</option>
+					<option>Cameroon</option>
+					<option>Canada</option>
+					<option>Cape Verde</option>
+					<option>Central African Republic</option>
+					<option>Chad</option>
+					<option>Chile</option>
+					<option>China</option>
+					<option>Colombia</option>
+					<option>Comoros</option>
+					<option>Congo, Democratic Republic of the</option>
+					<option>Congo, Repubblic of the</option>
+					<option>Cook Islands</option>
+					<option>Costa Rica</option>
+					<option>Cote Divoire</option>
+					<option>Cuba</option>
+					<option>Djibouti</option>
+					<option>Dominica</option>
+					<option>Dominican Republic</option>
+					<option>East Timor</option>
+					<option>Ecuador</option>
+					<option>Egypt</option>
+					<option>El Salvador</option>
+					<option>Equatorial Guinea</option>
+					<option>Eritrea</option>
+					<option>Ethiopia</option>
+					<option>Fiji</option>
+					<option>Gabon</option>
+					<option>Gambi</option>
+					<option>Georgia</option>
+					<option>Ghana</option>
+					<option>Grenada</option>
+					<option>Guatemala</option>
+					<option>Guinea</option>
+					<option>Guinea-Bissau</option>
+					<option>Guyana</option>
+					<option>Haiti</option>
+					<option>Honduras</option>
+					<option>Iceland</option>
+					<option>India</option>
+					<option>Indonesia</option>
+					<option>Iran</option>
+					<option>Israel</option>
+					<option>Ivory Coast</option>
+					<option>Jamaica</option>
+					<option>Japan</option>
+					<option>Jordan</option>
+					<option>Kazakhstan</option>
+					<option>Kenya</option>
+					<option>Kiribati</option>
+					<option>Korea, North</option>
+					<option>Korea, South</option>
+					<option>Kuwait</option>
+					<option>Kyrgyzstan</option>
+					<option>Laos</option>
+					<option>Lebanon</option>
+					<option>Lesotho</option>
+					<option>Liberia</option>
+					<option>Libya</option>
+					<option>Liechtenstein</option>
+					<option>Macedonia</option>
+					<option>Madagascar</option>
+					<option>Malawi</option>
+					<option>Malaysia</option>
+					<option>Maldives</option>
+					<option>Mali</option>
+					<option>Marshall Islands</option>
+					<option>Mauritania</option>
+					<option>Mauritius</option>
+					<option>Mexico</option>
+					<option>Micronesia, Federal States of</option>
+					<option>Moldova</option>
+					<option>Monaco</option>
+					<option>Mongolia</option>
+					<option>Montenegro</option>
+					<option>Morocco</option>
+					<option>Mozambique</option>
+					<option>Myanmar</option>
+					<option>Nagorno-Karabakh</option>
+					<option>Namibia</option>
+					<option>Nauru</option>
+					<option>Nepal</option>
+					<option>New Zealand</option>
+					<option>Nicaragua</option>
+					<option>Niger</option>
+					<option>Nigeria</option>
+					<option>Norway</option>
+					<option>Oman</option>
+					<option>Pakistan</option>
+					<option>Palestine</option>
+					<option>Panama</option>
+					<option>Papua New Guinea</option>
+					<option>Paraguay</option>
+					<option>Peru</option>
+					<option>Philippines</option>
+					<option>Qatar</option>
+					<option>Russia</option>
+					<option>Rwanda</option>
+					<option>Saint Kitts and Nevis</option>
+					<option>Saint Lucia</option>
+					<option>Saint Vincent and the Grenadines</option>
+					<option>Samoa</option>
+					<option>San Marino</option>
+					<option>Sao Tome and Principe</option>
+					<option>Saudi Arabia</option>
+					<option>Senegal</option>
+					<option>Serbia</option>
+					<option>Seychelles</option>
+					<option>Sierra Leone</option>
+					<option>Singapore</option>
+					<option>Solomon Islands</option>
+					<option>Somalia</option>
+					<option>South Africa</option>
+					<option>South Sudan</option>
+					<option>Sri Lanka</option>
+					<option>Sudan</option>
+					<option>Suriname</option>
+					<option>Swaziland</option>
+					<option>Switzerland</option>
+					<option>Syria</option>
+					<option>Tajikistan</option>
+					<option>Tanzania</option>
+					<option>Thailand</option>
+					<option>Togo</option>
+					<option>Tonga</option>
+					<option>Trinidad and Tobago</option>
+					<option>Tunisia</option>
+					<option>Turkey</option>
+					<option>Turkmenistand</option>
+					<option>Tuvalu</option>
+					<option>Uganda</option>
+					<option>United Arab Emirates</option>
+					<option>Uruguay</option>
+					<option>Uzbekistan</option>
+					<option>Vanuatu</option>
+					<option>Vatican City</option>
+					<option>Venezuela</option>
+					<option>Vietnam</option>
+					<option>Yemen</option>
+					<option>Zambia</option>
+					<option>Zimbabwe</option>
+				</select>
+			</td>
+		</tr>
 		<tr>
 			<td>Set the admin login</td><td><input type="text" value="" name="login" /></td>
 		</tr>
