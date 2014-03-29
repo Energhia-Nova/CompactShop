@@ -1,1 +1,0 @@
-<h1><?=__('page is not found')?> 404</h1>
