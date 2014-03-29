@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin_Products extends Controller_Admin_Admin {
+class Controller_Admin_Products extends Controller_Admin_Base {
     
     // Products list
     public function action_index()
@@ -11,7 +11,6 @@ class Controller_Admin_Products extends Controller_Admin_Admin {
         $this->template->content = $view;
     }
     
-    // new Product
     public function action_new_product()
     {
 		$categories = ORM::factory('menu_item')->find_all();

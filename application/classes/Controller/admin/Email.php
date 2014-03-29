@@ -1,8 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin_Email extends Controller_Admin_Admin {
+class Controller_Admin_Email extends Controller_Admin_Base {
      
-    // Email
     public function action_index()
     {
 		if ($post = $this->request->post())
@@ -23,4 +22,4 @@ class Controller_Admin_Email extends Controller_Admin_Admin {
 		$this->template->content = View::factory('admin/functional/email');
     }
 	
-} // End Email.
+}

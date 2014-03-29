@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin_Users extends Controller_Admin_Admin {
+class Controller_Admin_Users extends Controller_Admin_Base {
     
     // Users list
     public function action_index()

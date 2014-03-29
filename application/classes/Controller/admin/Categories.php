@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin_Categories extends Controller_Admin_Admin {
+class Controller_Admin_Categories extends Controller_Admin_Base {
 
     // Categories list
     public function action_index()
@@ -9,7 +9,7 @@ class Controller_Admin_Categories extends Controller_Admin_Admin {
         $view = View::factory('admin/category/categories_list')->bind('categories',$categories);
         $this->template->content = $view;
     }
-    // New Category
+    
     public function action_new_category()
     {
         $categories = ORM::factory('category')->find_all();

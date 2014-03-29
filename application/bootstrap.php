@@ -184,6 +184,7 @@ foreach ($menu_items as $mi) $item_urls[] = $mi->url;
 	
 Route::set('products','<category>(/page/<page>)',array('category'=>implode('|',$item_urls)))
     ->defaults(array(
+		'directory'  => 'site',
         'controller' => 'products',
         'action' => 'index',
     ));
@@ -194,6 +195,7 @@ Route::set('product','<categories>/show/<id>',
 		'id'=>'\d+',
 	))
 	->defaults(array(
+			'directory' => 'site',
 			'controller'=>'products',
 			'action'=>'show',
 	));
@@ -207,18 +209,21 @@ Route::set('adminajax','admin/ajax.php')
 		
 Route::set('signup','sign-up')
 	->defaults(array(
+		'directory' => 'site',
 		'controller'=>'signup',
 		'action'=>'index',
 	));
 	
 Route::set('signconfirm','sign-up/confirm/<link>')
 	->defaults(array(
+		'directory'=>'site',
 		'controller'=>'signup',
 		'action'=>'confirm',
 	));
 	 
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
+		'directory'  => 'site',
 		'controller' => 'home',
 		'action'     => 'index',
 	));

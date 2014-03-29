@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin_Suppliers extends Controller_Admin_Admin {
+class Controller_Admin_Suppliers extends Controller_Admin_Base {
     
     // Suppliers list
     public function action_index()
@@ -9,7 +9,7 @@ class Controller_Admin_Suppliers extends Controller_Admin_Admin {
         $view = View::factory('admin/supplier/suppliers_list')->bind('suppliers',$suppliers);
         $this->template->content = $view;
     }
-    // New Supplier
+
     public function action_new_supplier()
     {
         if ($post = $this->request->post())
@@ -24,7 +24,7 @@ class Controller_Admin_Suppliers extends Controller_Admin_Admin {
         $view = View::factory('admin/supplier/new_supplier');
         $this->template->content = $view;
     }
-	// Edit Supplier
+	
 	public function action_edit()
 	{
 		$supplier_id = $this->request->param('id');

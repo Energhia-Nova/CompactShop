@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin_Brands extends Controller_Admin_Admin {
+class Controller_Admin_Brands extends Controller_Admin_Base {
      
     // Brands list
     public function action_index()
@@ -10,7 +10,7 @@ class Controller_Admin_Brands extends Controller_Admin_Admin {
         ->bind('brands',$brands);
         $this->template->content = $view;
     }
-    // New Brand
+   
     public function action_new_brand()
     {
         $view = View::factory('admin/brand/new_brand');

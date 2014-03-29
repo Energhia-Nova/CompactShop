@@ -1,8 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin_Language extends Controller_Admin_Admin {
+class Controller_Admin_Language extends Controller_Admin_Base {
      
-    // Modules list
     public function action_index()
     {
 		if ($lang = $this->request->param('lang'))
