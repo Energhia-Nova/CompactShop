@@ -16,16 +16,15 @@ class Controller_Site_Signup extends Controller_Site_Base {
 				$user = ORM::factory('user')->create_user($post, array('username','email','password','accepted','code'));
 				$user->add('roles',ORM::factory('role',array('name'=>'login')));
 				
-				mail($post['email'],'Store. Registration','For the registration on the site [Site]  go by the next link set the activation code \r\n Registration Link: /sign-up/confirm/'.$post['accepted']. ' \r\n Activation Code: '.$post['code']);
+				mail($post['email'],'Site. Registration','For the registration on the site '.$this->store_name.' go by the next link set the activation code \r\n Registration Link: '.URL::base(true).'sign-up/confirm/'.$post['accepted']. ' \r\n Activation Code: '.$post['code']);
 				
-				$this->redirect('/sign-up/confirm/'.$post['accepted']);
+				$this->redirect(URL::base(true).'sign-up/confirm/'.$post['accepted']);
 			}
 			catch (ORM_Validation_Exception $e)
 			{
 				$errors = $e->errors('models');
-				
 			}
-								
+
 		}
 				
 		$this->template->content = View::factory('site/user/registration_form');

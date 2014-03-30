@@ -1,5 +1,5 @@
 <div class="nav">
-	<div class="icon"><a href="/" style="font-size: 20px; font-family: Verdana; color: white; font-weight: bold; text-shadow: 1px 1px 3px grey;"><?=__('Store')?></a></div>
+	<div class="icon"><a href="/" style="font-size: 20px; font-family: Verdana; color: white; font-weight: bold; text-shadow: 1px 1px 3px grey;"><?=$store_name?></a></div>
 	<?php foreach($pages as $iter=>$page):?>
 		<div class="nav_menu">
 			<?php if (!array_key_exists('items',$page)) { 

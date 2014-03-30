@@ -38,7 +38,70 @@ else
 	#results, #install { padding: 0.8em; color: #fff; font-size: 1.5em; }
 	#results.pass, #install.pass { background: #191; }
 	#results.fail { background: #911; }
+	table tr.db_conf { display: none; }
 	</style>
+	
+	<script type="text/javascript">
+		function SubmitNext() {
+		
+			if (document.installation.setup.value=='Next') {
+						
+				toggle_visibility('db_conf','table-row');
+			
+				document.installation.setup.value='Install';
+				
+				return false;
+			
+			} 
+				
+		}
+		
+		function toggle_visibility(className,display) {
+			
+			var elements = getElementsByClassName(document, className),
+				n = elements.length;
+			
+			for (var i = 0; i < n; i++) {
+			
+				var e = elements[i];
+
+				if(display.length > 0) {
+				e.style.display = display;
+				} else {
+				if(e.style.display == 'block') {
+				 e.style.display = 'none';
+				} else {
+				 e.style.display = 'block';
+				}
+				
+				}
+			}
+		}
+		
+function getElementsByClassName(node,classname) {
+  if (node.getElementsByClassName) { // use native implementation if available
+    return node.getElementsByClassName(classname);
+  } else {
+    return (function getElementsByClass(searchClass,node) {
+        if ( node == null )
+          node = document;
+        var classElements = [],
+            els = node.getElementsByTagName("*"),
+            elsLen = els.length,
+            pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)"), i, j;
+
+        for (i = 0, j = 0; i < elsLen; i++) {
+          if ( pattern.test(els[i].className) ) {
+              classElements[j] = els[i];
+              j++;
+          }
+        }
+        return classElements;
+    })(classname, node);
+  }
+}
+		
+	</script>
 
 </head>
 <body>
@@ -138,7 +201,9 @@ $tables = array(
   `name` varchar(256) NOT NULL,
   `alias` varchar(256) NOT NULL,
   `value` varchar(256) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `alias` (`alias`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;',
 
 'orders'=>'CREATE TABLE IF NOT EXISTS `'.$t_.'orders` (
@@ -342,7 +407,16 @@ $tables = array(
 										
 										if ($t=='options')
 										{
-											$mysqli->query("INSERT INTO `".$t_."options` VALUES (1,'Store  Name','magazin-name','Store');");
+											if (isset($_POST['store']) and !empty($_POST['store']))
+											{
+												$store = trim($_POST['store']);
+											}
+											else
+											{
+												$store = 'Store';
+											}
+										
+											$mysqli->query("INSERT INTO `".$t_."options` VALUES (1,'Store  Name','store-name','".$store."');");
 										}
 										
 										if ($t=='orders')
@@ -467,7 +541,7 @@ $tables = array(
 
 <h1>Site Installation</h1>
 	
-	<form method="post" action="">
+	<form method="post" name="installation" onsubmit="return SubmitNext();" action="">
 	<table>
 		<tr>
 			<td>Select a country</td>
@@ -646,6 +720,9 @@ $tables = array(
 			</td>
 		</tr>
 		<tr>
+			<td>Store Name</td><td><input type="text" value="" name="store" /></td>
+		</tr>
+		<tr>
 			<td>Set the admin login</td><td><input type="text" value="" name="login" /></td>
 		</tr>
 		<tr>
@@ -657,26 +734,26 @@ $tables = array(
 		<tr>
 			<td>repeat password</td><td><input type="password" value="" name="password_confirm" /></td>
 		</tr>
-		<tr>
+		<tr class="db_conf">
 			<th>Settings</th><th>Database Configuration</th>
 		</tr>
-		<tr>
+		<tr class="db_conf">
 			<td>Database Name</td><td><input type="text" value="" name="db_name" /></td>
 		</tr>
-		<tr>
+		<tr class="db_conf">
 			<td>Tables Prefix</td><td><input type="text" value="" name="prefix" /></td>
 		</tr>
-		<tr>
+		<tr class="db_conf">
 			<td>MySQL-Server</td><td><input type="text" value="" name="db_host" /></td>
 		</tr>
-		<tr>
+		<tr class="db_conf">
 			<td>Database User</td><td><input type="text" value="" name="db_user" /></td>
 		</tr>
-		<tr>
+		<tr class="db_conf">
 			<td>Password</td><td><input type="text" value="" name="db_pass" /></td>
 		</tr>
 		<tr>
-			<td></td><td><input type="submit" value="Install" name="setup" /></td>
+			<td></td><td><input type="submit" value="Next" name="setup" /></td>
 		</tr>
 	</table>
 	</form>

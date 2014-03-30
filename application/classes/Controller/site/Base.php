@@ -3,15 +3,19 @@
 abstract Class Controller_Site_Base extends Controller_Template {
     
     public $template = 'main';
+	
+	public $store_name = 'Store';
     
     public function before()
     {
         parent::before();
 		
+		$this->store_name = ORM::factory('option')->where('alias','=','store-name')->find()->value;	
 		$language = ORM::factory('Language')->where('on','=',1)->find();
 		$country = ORM::factory('Country')->where('on','=',1)->find();
 		$currency = (!empty($country->currency)) ? $country->currency : '$';		
 		View::set_global('currency',$currency);
+		View::set_global('store_name',$this->store_name);
 		I18n::lang($language->short);
 		
 		if (!Auth::instance()->logged_in())
@@ -31,12 +35,12 @@ abstract Class Controller_Site_Base extends Controller_Template {
 			}
 			$total_price = number_format($total_price,2,'.','');
 		}
-				
+		
 		//$pages = Kohana::$config->load('pages');
 		$menu = View::factory('site/menu')->bind('pages',$pages)->bind('total_price',$total_price);
         $pages = ORM::factory('page')->get_pages();
-        $this->template->title = 'CompactShop CMS';
-        $this->template->description = 'CompactShop CMS';
+        $this->template->title = $this->store_name;
+        $this->template->description = $this->store_name;
 		$this->template->categories = Menu::factory()->render();
         $this->template->content = '';
 		$this->template->pagination = '';
