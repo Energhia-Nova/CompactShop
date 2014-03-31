@@ -397,7 +397,7 @@ $tables = array(
 										
 										if ($t=='brands')
 										{											
-											$mysqli->query("INSERT INTO `".$t_."brands` VALUES  (1,'apple','Apple','Description'),(2,'brand-two','Brand','Brand Two');");
+											$mysqli->query("INSERT INTO `".$t_."brands` VALUES  (1,'brand-one','Brand  1','...'),(2,'brand-two','Brand 2','...');");
 										}
 										
 										if ($t=='menu_items')
@@ -431,7 +431,7 @@ $tables = array(
 										
 										if ($t=='profile')
 										{
-											$mysqli->query("INSERT INTO `".$t_."profile` VALUES (9,17,25,'','skype:vasi');");
+											$mysqli->query("INSERT INTO `".$t_."profile` VALUES (9,17,25,'','skype[login]');");
 										}
 										
 										if ($t=='purchases')
