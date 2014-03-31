@@ -11,7 +11,7 @@ class Controller_Site_Ajax extends Controller_Site_Base {
 	{
 		if (!Auth::instance()->logged_in()) exit;
 		
-		$count = ORM::factory('order')->where('user_id','=',Auth::instance()->get_user()->id)->where('status_id','=',1)->count_all();
+		$count = ORM::factory('Order')->where('user_id','=',Auth::instance()->get_user()->id)->where('status_id','=',1)->count_all();
 		
 		if ($count>0)
 		{
@@ -29,7 +29,7 @@ class Controller_Site_Ajax extends Controller_Site_Base {
 	{		
 		if (!Auth::instance()->logged_in()) exit;
 		
-		$count = ORM::factory('order')->where('user_id','=',Auth::instance()->get_user()->id)->where('status_id','=',1)->count_all();
+		$count = ORM::factory('Order')->where('user_id','=',Auth::instance()->get_user()->id)->where('status_id','=',1)->count_all();
 		
 		if ($count>0)
 		{
@@ -40,7 +40,7 @@ class Controller_Site_Ajax extends Controller_Site_Base {
 		{
 			if (isset($post['func']) and $post['func']=='cancel')
 			{
-				$cart = ORM::factory('cart',array('user_id'=>Auth::instance()->get_user()->id, 'product_id'=>$post['product_id']));
+				$cart = ORM::factory('Cart',array('user_id'=>Auth::instance()->get_user()->id, 'product_id'=>$post['product_id']));
 				
 				$amount = $cart->amount;
 				
@@ -58,7 +58,7 @@ class Controller_Site_Ajax extends Controller_Site_Base {
 				exit;
 			}
 		
-			$cart = ORM::factory('cart',array('user_id'=>Auth::instance()->get_user()->id,'product_id'=>$post['product_id']));
+			$cart = ORM::factory('Cart',array('user_id'=>Auth::instance()->get_user()->id,'product_id'=>$post['product_id']));
 		
 			if ($cart->loaded())
 			{
@@ -69,7 +69,7 @@ class Controller_Site_Ajax extends Controller_Site_Base {
 			} 
 			else
 			{
-				$cart = ORM::factory('cart');
+				$cart = ORM::factory('Cart');
 				$cart->user_id = Auth::instance()->get_user()->id;
 				$cart->product_id = $post['product_id'];
 				$cart->amount = 1;
@@ -87,7 +87,7 @@ class Controller_Site_Ajax extends Controller_Site_Base {
 		{
 			$order_id = $post['ordid'];
 			$status_id = $post['status'];
-			$order=ORM::factory('order',$order_id);
+			$order=ORM::factory('Order',$order_id);
 			$order->status_id = $status_id;
 			$order->save();
 		}

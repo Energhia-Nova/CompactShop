@@ -8,10 +8,11 @@ class Controller_Site_Profile extends Controller_Site_Base {
 		
 		if ($post = $this->request->post())
 		{
-			$profile = ORM::factory('site/profile');
+			$profile = ORM::factory('Profile');
 			$profile->where('user_id','=',Auth::instance()->get_user()->id)->find();
 			$profile->user_id = Auth::instance()->get_user()->id;
 			$profile->age = $post['age'];
+			$profile->name = $post['name'];
 			$profile->contacts = $post['contacts'];			
 			$profile->save();
 		}

@@ -10,7 +10,7 @@ abstract Class Controller_Site_Base extends Controller_Template {
     {
         parent::before();
 		
-		$this->store_name = ORM::factory('option')->where('alias','=','store-name')->find()->value;	
+		$this->store_name = ORM::factory('Option')->where('alias','=','store-name')->find()->value;	
 		$language = ORM::factory('Language')->where('on','=',1)->find();
 		$country = ORM::factory('Country')->where('on','=',1)->find();
 		$currency = (!empty($country->currency)) ? $country->currency : '$';		
@@ -25,12 +25,12 @@ abstract Class Controller_Site_Base extends Controller_Template {
 		}
 		else
 		{
-			$cart = ORM::factory('cart');
+			$cart = ORM::factory('Cart');
 			$purchases = $cart->where('user_id','=',Auth::instance()->get_user()->id)->find_all();
 			$total_price = 0;
 			foreach ($purchases as $p)
 			{
-				$product = ORM::factory('product',$p->product_id);
+				$product = ORM::factory('Product',$p->product_id);
 				$total_price+=$product->price;
 			}
 			$total_price = number_format($total_price,2,'.','');
@@ -38,7 +38,7 @@ abstract Class Controller_Site_Base extends Controller_Template {
 		
 		//$pages = Kohana::$config->load('pages');
 		$menu = View::factory('site/menu')->bind('pages',$pages)->bind('total_price',$total_price);
-        $pages = ORM::factory('page')->get_pages();
+        $pages = ORM::factory('Page')->get_pages();
         $this->template->title = $this->store_name;
         $this->template->description = $this->store_name;
 		$this->template->categories = Menu::factory()->render();

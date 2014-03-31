@@ -15,10 +15,12 @@ abstract Class Controller_Admin_Base extends Controller_Template {
 		$currency = (!empty($country->currency)) ? $country->currency : '$';
 		View::set_global('currency',$currency);
 		I18n::lang($language->short);
+		
+		$store_name = ORM::factory('Option',array('alias'=>'store-name'))->value;
                 
         $funcview = View::factory('admin/functional/'.$this->request->controller());
-        $this->template->title = 'CompactShop CMS Admin';
-        $this->template->description = 'CompactShop CMS Admin';
+        $this->template->title = $store_name. ' Admin';
+        $this->template->description = $store_name. ' Admin';
         $this->template->functional = $funcview;
         $this->template->content = '';
         $this->template->styles = array('admin');

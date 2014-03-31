@@ -17,7 +17,34 @@ class Model_Auth_User extends ORM {
 	protected $_has_many = array(
 		'user_tokens' => array('model' => 'User_Token'),
 		'roles'       => array('model' => 'Role', 'through' => 'roles_users'),
+		'orders'	  => array( 'order' => array()),
 	);
+	
+	// Returns user orders sum
+	public function orders_sum()
+	{
+		$orders = $this->orders->find_all();
+		
+		$auth = Auth::instance();
+		
+		// by default
+		$orders_sum = 0;
+		
+		foreach ($orders as $order)
+		{
+			$orders_sum+=$order->total_price();
+		}	
+		
+		return number_format($orders_sum,2,'.','');
+	}
+	
+	// Getting the user role
+	public function get_roles()
+	{
+		$roles = $this->roles->find_all();
+	
+		return $roles;
+	}
 	
 	/**
 	 * User can have a profile

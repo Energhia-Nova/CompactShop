@@ -26,6 +26,25 @@ class Controller_Admin_Users extends Controller_Admin_Base {
 			$user->email = $post['email'];
 			$user->username = $post['login'];
 			$user->save();
+			
+			$profile = ORM::factory('Profile')->where('user_id','=',$user_id)->find();
+			
+			if ($profile->loaded())
+			{
+				$profile->age = $post['age'];
+				$profile->name = $post['name'];
+				$profile->contacts = $post['contacts'];
+				$profile->save();
+			}
+			else
+			{
+				$profile = ORM::factory('Profile');
+				$profile->user_id = $user_id;
+				$profile->age = $post['age'];
+				$profile->name = $post['name'];
+				$profile->contacts = $post['contacts'];
+				$profile->save();
+			}
 		}
 		
 		$user = ORM::factory('user',$user_id);

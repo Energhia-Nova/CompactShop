@@ -10,7 +10,7 @@ class Controller_Site_Products extends Controller_Site_Base {
 		$get_category = ltrim($get_category,'/');
 		$get_category = rtrim($get_category,'/');
 				
-		$category = ORM::factory('category',array('url'=>$get_category));
+		$category = ORM::factory('Category',array('url'=>$get_category));
 				
 		$total_products = $category->products->count_all();
 						
@@ -34,7 +34,7 @@ class Controller_Site_Products extends Controller_Site_Base {
 	{
 		if ($product_id = $this->request->param('id'))
 		{
-			$product = ORM::factory('product',$product_id);
+			$product = ORM::factory('Product',$product_id);
 			$view = View::factory('site/products/show')->bind('product',$product);
 			$this->template->content = $view;
 		}

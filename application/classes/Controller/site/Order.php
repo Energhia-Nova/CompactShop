@@ -8,14 +8,14 @@ class Controller_Site_Order extends Controller_Site_Base {
 				
 		$total_price = 0;
 
-		$count = ORM::factory('order')
+		$count = ORM::factory('Order')
 			->where('user_id','=',Auth::instance()->get_user()->id)
 			->where('status_id','=',1)
 			->count_all();
 								
 		if ($count>0)
 		{
-			$order = ORM::factory('order')->where('user_id','=',Auth::instance()->get_user()->id)->where('status_id','=',1)->find();
+			$order = ORM::factory('Order')->where('user_id','=',Auth::instance()->get_user()->id)->where('status_id','=',1)->find();
 			
 			$purchases = $order->purchases->find_all();
 			
@@ -29,20 +29,20 @@ class Controller_Site_Order extends Controller_Site_Base {
 		}
 		else
 		{
-			$cart_purchases = ORM::factory('cart')
+			$cart_purchases = ORM::factory('Cart')
 				->where('user_id','=',Auth::instance()->get_user()->id)
 				->find_all();
 			
 			if ($cart_purchases->count()==0) $this->redirect(URL::base(true));
 					
-			$order = ORM::factory('order');
+			$order = ORM::factory('Order');
 			$order->user_id = Auth::instance()->get_user()->id;
 			$order->status_id=1;
 			$order->save();
 												
 			foreach ($cart_purchases as $p)
 			{
-				$purchase = ORM::factory('purchase');
+				$purchase = ORM::factory('Purchase');
 				$purchase->order_id = $order->id;
 				$purchase->product_id = $p->product_id;
 				$purchase->amount = $p->amount;

@@ -15,8 +15,8 @@
 <tr>
 <td><a href="<?=URL::base(true)?>admin/users/edit/<?=$user->id?>"><?=$user->username?></a></td>
 <td><?=$user->email?></td>
-<td><?=__('Buyer')?></td>
-<td>2</td>
-<td>300 <?=$currency?></th>
+<td><? foreach ($user->get_roles() as $role) echo $role->name.'<br />';?></td>
+<td><?=$user->orders->count_all()?></td>
+<td><?=$user->orders_sum()?> <?=$currency?></th>
 <?php endforeach; ?>
 </table>

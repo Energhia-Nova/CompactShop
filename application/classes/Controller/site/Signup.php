@@ -13,8 +13,8 @@ class Controller_Site_Signup extends Controller_Site_Base {
 			
 			try
 			{
-				$user = ORM::factory('user')->create_user($post, array('username','email','password','accepted','code'));
-				$user->add('roles',ORM::factory('role',array('name'=>'login')));
+				$user = ORM::factory('User')->create_user($post, array('username','email','password','accepted','code'));
+				$user->add('roles',ORM::factory('Role',array('name'=>'login')));
 				
 				mail($post['email'],'Site. Registration','For the registration on the site '.$this->store_name.' go by the next link set the activation code \r\n Registration Link: '.URL::base(true).'sign-up/confirm/'.$post['accepted']. ' \r\n Activation Code: '.$post['code']);
 				
@@ -38,7 +38,7 @@ class Controller_Site_Signup extends Controller_Site_Base {
 		
 		if (!empty($accepted) and !empty($post['code']))
 		{
-			$user = ORM::factory('user',array('accepted'=>$accepted));
+			$user = ORM::factory('User',array('accepted'=>$accepted));
 			
 			if ($user->code==$post['code'])
 			{
