@@ -18,6 +18,8 @@ class Controller_Admin_Language extends Controller_Admin_Base {
 			$lng = ORM::factory('Language')->where('name','=',$lang)->find();
 			$lng->on=1;
 			$lng->update();
+			
+			I18n::lang($language->short);
 		}	
 	
 		$languages = ORM::factory('Language')->find_all();

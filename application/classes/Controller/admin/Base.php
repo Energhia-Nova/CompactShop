@@ -15,7 +15,7 @@ abstract Class Controller_Admin_Base extends Controller_Template {
 		$currency = (!empty($country->currency)) ? $country->currency : '$';
 		View::set_global('currency',$currency);
 		I18n::lang($language->short);
-		
+				
 		$store_name = ORM::factory('Option',array('alias'=>'store-name'))->value;
                 
         $funcview = View::factory('admin/functional/'.$this->request->controller());
