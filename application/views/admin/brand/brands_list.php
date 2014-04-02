@@ -15,7 +15,7 @@
 <td><a href="<?=URL::base(true)?>admin/brands/edit/<?=$brand->id?>"><?=$brand->name?></td>
 <td><?=$brand->alias?></td>
 <td><?=$brand->description?></td>
-<td style="text-align:center"><a href="<?=URL::base(true)?>admin/brands/remove/<?=$brand->id?>" class="icon-remove" style="float:none;"></a></td>
+<td style="text-align:center; width: 15px;"><a href="<?=URL::base(true)?>admin/brands/remove/<?=$brand->id?>" class="icon-remove" style="float:none;"></a></td>
 </tr>
 <?php endforeach; ?>
 </table>

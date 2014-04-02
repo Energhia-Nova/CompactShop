@@ -20,6 +20,11 @@ class Controller_Admin_Orders extends Controller_Admin_Base {
 	
 	public function action_remove()
 	{
+		if ($order_id = $this->request->param('id'))
+		{
+			ORM::factory('Order',$order_id)->delete();
+		}
 		
+		$this->request->redirect('admin/orders');
 	}
 }

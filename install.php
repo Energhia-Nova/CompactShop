@@ -421,7 +421,7 @@ $tables = array(
 										
 										if ($t=='orders')
 										{
-											$mysqli->query("INSERT INTO `".$t_."orders` VALUES (21,17,1),(20,17,2),(19,18,2);");
+											$mysqli->query("INSERT INTO `".$t_."orders` VALUES (1,18,2);");
 										}
 										
 										if ($t=='products')
@@ -461,7 +461,7 @@ $tables = array(
 										
 										if ($t=='users')
 										{
-											$mysqli->query("INSERT INTO `".$t_."users` VALUES (10,'test123@gmail.com','test123','f03c1289510e0cf3c6ae810ba6aa3a064e52b5c4e7d2346ae6d27714e0f25b95',0,NULL,'89051016e2662c1a4f1804b198cd9d5ffce04f74',0,0),(11,'test11@gmail.com','test11','bfd1b5cf2aa5b66ba86538e53d1c97fad280f866db5086b5f7bd572d968809e0',0,NULL,'a5bc25fc656e1c75d6190019f6703ff2eca9068c',0,0),(12,'test12@gmail.com','test12','1d292d76609038da42a22fbb891949ee6f3d48a8fad38bc4f221832da04e6011',0,NULL,'2e7667d4ef8fad834f7de3efdb9aff340ea169ce',0,0),(13,'test13@gmail.com','test13','23a512525ab07e407f3f5a666f706183e9082808e644bc8cb57eff2b956ae3b8',0,NULL,'30d99e87ece069fcaa074aaf363087e125c40ea1',0,0),(14,'test14@gmail.com','test14','57974649ddbad188a4154e66386409927e5ab4b484ad74c61e3e8c7158cb59f7',0,NULL,'e42127304802fa7741af293fe977ffdcd9ff42bd',0,0),(15,'test15@gmail.com','test15','fd647ffe55ef6af294fbea22ac5ca8bbbb46be8f20af0276c569233f99228680',0,NULL,'69797c1ecef4c336b3c927aecb345a2170d3050d',0,0),(16,'test16@gmail.com','test16','92b01be29f7f63455481fb71b130464d9febe2085b5c0f9b5eca7adf3ea04d2f',1,1389368626,'639e4303d43bd353504eecebe96b9bc99c93f63d',1,27928),(17,'progeram1@gmail.com','admin','be482f1299ee08f664dda6faac3f04ae4de188e6e698f305efaac42095039e32',23,1394908769,'a7d23316553427f491b601e2eab08205869e9222',1,76431),(18,'progeram@gmail.com','prostouser','adf9b94ea7d63641c2bcf172eec71c0e9c38342e7f7c3e29877ada9769083b50',6,1394800185,'a64a80bd75197036000e9eda4bbd0c5dabd35cab',1,94322);");
+											$mysqli->query("INSERT INTO `".$t_."users` VALUES (18,'progeram@gmail.com','prostouser','adf9b94ea7d63641c2bcf172eec71c0e9c38342e7f7c3e29877ada9769083b50',6,1394800185,'a64a80bd75197036000e9eda4bbd0c5dabd35cab',1,94322);");
 										}
 																				
 									}

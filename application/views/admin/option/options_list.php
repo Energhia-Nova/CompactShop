@@ -15,7 +15,7 @@
 <td><a href="<?=URL::base(true)?>admin/options/edit/<?=$option->id?>"><?=$option->name?></a></td>
 <td><?=$option->value?></td>
 <td><?=$option->alias?></td>
-<td style="text-align:center"><a href="<?=URL::base(true)?>admin/options/remove/<?=$option->id?>" style="float:none;" class="icon-remove"></a></td>
+<td style="text-align:center; width: 15px;"><a href="<?=URL::base(true)?>admin/options/remove/<?=$option->id?>" style="float:none;" class="icon-remove"></a></td>
 </tr>
 <?php endforeach; ?>
 </table>

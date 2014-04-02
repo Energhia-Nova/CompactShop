@@ -11,6 +11,7 @@
 <th><?=__('Supplier')?></th>
 <th><?=__('amount')?></th>
 <th><?=__('price')?></th>
+<th></th>
 </tr>
 <?php $i=1; foreach ($products as $product):?>
 <tr>
@@ -20,6 +21,7 @@
 <td><?=$product->supplier->name?></td>
 <td><?=$product->stock?></td>
 <td><?=number_format($product->price,2,'.','')?> <?=$currency?></td>
+<td style="text-align:center; width: 15px;"><a href="<?=URL::base(true)."admin/products/remove/".$product->id;?>" class="icon-remove" style="float:none;"></a></td>
 </tr>
 <?php endforeach; ?>
 </table>

@@ -15,7 +15,7 @@
 <td><a href="<?php echo URL::base(true)."admin/suppliers/edit/".$supplier->id;?>"><?=$supplier->name?></a></td>
 <td><?=$supplier->alias?></td>
 <td><?=$supplier->description?></td>
-<td style="text-align:center;"><a href="<?=URL::base(true)."admin/suppliers/remove/".$supplier->id;?>" class="icon-remove" style="float:none;"></a></td>
+<td style="text-align:center; width: 15px;"><a href="<?=URL::base(true)."admin/suppliers/remove/".$supplier->id;?>" class="icon-remove" style="float:none;"></a></td>
 </tr>
 <?php endforeach; ?>
 </table>

@@ -10,6 +10,7 @@
 <th><?=__('Role')?></th>
 <th><?=__('orders amount')?></th>
 <th><?=__('Total Price')?></th>
+<th></th>
 </tr>
 <?php foreach ($users as $user):?>
 <tr>
@@ -18,5 +19,6 @@
 <td><? foreach ($user->get_roles() as $role) echo $role->name.'<br />';?></td>
 <td><?=$user->orders->count_all()?></td>
 <td><?=$user->orders_sum()?> <?=$currency?></th>
+<td style="text-align:center; width: 15px;"><a href="<?=URL::base(true)."admin/users/remove/".$user->id;?>" class="icon-remove" style="float:none;"></a></td>
 <?php endforeach; ?>
 </table>
