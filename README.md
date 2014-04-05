@@ -7,7 +7,8 @@ Country - European Union (EU) March 28 2014 10:50
 CompactShop
 ---
 
-### Support
- [Netz Gruppe in vk.com](http://vk.com/CompactShopCMS) -
- [Facebook CompactShop](https://www.facebook.com/CompactShop)
+### Social Pages
+[vk.com](http://vk.com/CompactShopCMS)
+
+[Facebook CompactShop](https://www.facebook.com/CompactShop)
 
