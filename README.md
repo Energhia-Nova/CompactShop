@@ -7,8 +7,8 @@ Country - European Union (EU) March 28 2014 10:50
 CompactShop
 ---
 
-### Social Pages
-[vk.com](http://vk.com/CompactShopCMS)
+### in Social Networks
+[vk.com/CompactShopCMS](http://vk.com/CompactShopCMS)
 
 [Facebook CompactShop](https://www.facebook.com/CompactShop)
 
