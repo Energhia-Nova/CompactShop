@@ -1,4 +1,4 @@
-Country - European Union (EU) March 28 2014 10:50
+European Union (EU)
 ---
 ![EU](https://raw.githubusercontent.com/Energhia-Nova/CompactShop/master/public/img/EU_Flag_c.jpg)
 ===
